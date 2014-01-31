@@ -67,6 +67,7 @@
 		<module name="InterfaceIsType"/>
 		<module name="JUnitTestCase"/>
 		<module name="JavaNCSS"/>
+        <module name="JavadocMethod"/>
 		<module name="JavadocStyle"/>
 		<module name="JavadocType"/>
 		<module name="LeftCurly"/>
@@ -150,7 +151,6 @@
 		<!--<module name="IllegalToken"/>-->
 		<!--<module name="ImportControl"/>-->
 		<!--<module name="ImportOrder"/>-->
-		<!--<module name="JavadocMethod"/>-->
 		<!--<module name="JavadocPackage"/>-->
 		<!--<module name="JavadocVariable"/>-->
 		<!--<module name="MissingCtor"/>-->
