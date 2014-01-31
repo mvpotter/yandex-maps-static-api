@@ -19,13 +19,14 @@
 
         <maven-pmd-plugin.version>2.7.1</maven-pmd-plugin.version>
         <maven-checkstyle-plugin.version>2.9.1</maven-checkstyle-plugin.version>
+        <maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
 
         <maven.compiler.target>1.6</maven.compiler.target>
     </properties>
 
     <modules>
         <module>build-tools</module>
-        <module>yandex-maps-api-core</module>
+        <module>yandex-maps-static-api</module>
     </modules>
 
     <dependencies>
@@ -96,7 +97,7 @@
                         </configuration>
                         <dependencies>
                             <dependency>
-                                <groupId>com.noveogroup.mpotter</groupId>
+                                <groupId>ru.mvpotter</groupId>
                                 <artifactId>build-tools</artifactId>
                                 <version>${build-tools.version}</version>
                             </dependency>
@@ -113,6 +114,15 @@
 
                 </plugins>
             </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jxr-plugin</artifactId>
+                        <version>${maven-jxr-plugin.version}</version>
+                    </plugin>
+                </plugins>
+            </reporting>
         </profile>
     </profiles>
 
