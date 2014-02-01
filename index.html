@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Yandex-maps-static-api by mvpotter</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/mvpotter/yandex-maps-static-api">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/mvpotter/yandex-maps-static-api/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/mvpotter/yandex-maps-static-api/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Yandex-maps-static-api</h1>
+          <p>Library for working with Yandex Maps Static API 1.x</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/mvpotter">mvpotter</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <p>Currently, yandex-maps-static-api supports only basic features:</p>
+
+<ul>
+<li>Support for <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_type.xml">map types</a>
+</li>
+<li>Support for setting a <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_center.xml">map center</a>
+</li>
+</ul><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-Java"><pre><span class="c1">// Firstly, you need to create YandexMap object</span>
+<span class="n">YandexMap</span> <span class="n">yandexMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">YandexMap</span><span class="o">();</span>
+<span class="c1">// Init required fields</span>
+
+<span class="c1">// ...</span>
+
+<span class="c1">// Use YandexApiUrlBuilder to generate appropriate URL for using in a browser or web component</span>
+<span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="n">YandexApiUrlBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">yandexMap</span><span class="o">);</span>
+</pre></div>
+
+<h2>
+<a name="further-plans" class="anchor" href="#further-plans"><span class="octicon octicon-link"></span></a>Further plans</h2>
+
+<ul>
+<li>Add support for basic map properties (<a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_viewport.xml">viewport</a>, <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_scale.xml">scale</a>, <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml">localization</a>, <a href="http://api.yandex.ru/maps/form.xml">API key</a>)</li>
+<li>Add support for <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml">Markers</a>
+</li>
+<li>Add support for <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml">Polylines</a>
+</li>
+</ul>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
