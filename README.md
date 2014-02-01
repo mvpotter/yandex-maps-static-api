@@ -16,7 +16,7 @@ YandexMap yandexMap = new YandexMap();
 
 // ...
 
-// Use YandexApiUrlBuilder to generate appropriate URL for using in browser on web component
+// Use YandexApiUrlBuilder to generate appropriate URL for using in a browser or web component
 String url = YandexApiUrlBuilder.build(yandexMap);
 ```
 Further plans
