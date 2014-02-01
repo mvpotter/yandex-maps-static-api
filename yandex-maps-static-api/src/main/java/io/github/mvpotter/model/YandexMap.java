@@ -16,11 +16,14 @@ import java.util.*;
  */
 public class YandexMap {
 
+    public static final float DEFAULT_VIEWPORT_SIZE = 0.01f;
+    public static final int DEFAULT_SCALE = 10;
+    public static final int MIN_SCALE = 0;
+    public static final int MAX_SCALE = 17;
+    public static final int DEFAULT_SIZE = 450;
+
     private static final float DEFAULT_LONGITUDE = 83.098206f;
     private static final float DEFAULT_LATITUDE = 54.851702f;
-    private static final float DEFAULT_VIEWPORT_SIZE = 0.01f;
-    private static final int DEFAULT_SCALE = 10;
-    private static final int DEFAULT_SIZE = 450;
 
     /**
      * YandexMap type.<br />
@@ -163,12 +166,18 @@ public class YandexMap {
     }
 
     /**
-     * Sets map scale.
+     * Sets map scale. Must be in range [0, 17], if scale is set to zero - the whole world is shown.
      *
      * @param scale map scale.
      */
     public void setScale(final int scale) {
-        this.scale = scale;
+        if (scale < MIN_SCALE) {
+            this.scale = MIN_SCALE;
+        } else if (scale > MAX_SCALE) {
+            this.scale = MAX_SCALE;
+        } else {
+            this.scale = scale;
+        }
     }
 
     /**
