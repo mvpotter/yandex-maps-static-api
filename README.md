@@ -27,6 +27,7 @@ String url = YandexApiUrlBuilder.build(yandexMap);
 ```
 Further plans
 -----
-- Add support for [localization](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml)
-- Add support for [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
-- Add support for [Polylines](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml)
+- Support for [localization](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml)
+- Support for [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
+- Support for [Polylines](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml)
+- Support for [Geocoding](http://api.yandex.ru/maps/doc/geocoder/desc/concepts/About.xml)
