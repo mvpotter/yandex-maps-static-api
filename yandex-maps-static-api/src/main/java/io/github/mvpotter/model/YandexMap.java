@@ -5,9 +5,9 @@
  * Time: 20:26
  */
 
-package ru.mvpotter.model;
+package io.github.mvpotter.model;
 
-import ru.mvpotter.model.marker.Marker;
+import io.github.mvpotter.model.marker.Marker;
 
 import java.util.*;
 

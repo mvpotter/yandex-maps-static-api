@@ -4,7 +4,7 @@
  * Date: 31/01/14
  * Time: 21:28
  */
-package ru.mvpotter.model;
+package io.github.mvpotter.model;
 
 /**
  * Polyline for representation on the map.<br />

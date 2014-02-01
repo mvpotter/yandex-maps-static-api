@@ -4,11 +4,11 @@
  * Date: 31/01/14
  * Time: 23:03
  */
-package ru.mvpotter;
+package io.github.mvpotter;
 
 import org.junit.Assert;
 import org.junit.Test;
-import ru.mvpotter.model.YandexMap;
+import io.github.mvpotter.model.YandexMap;
 
 public class YandexApiUrlBuilderTest {
 

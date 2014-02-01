@@ -4,7 +4,7 @@
  * Date: 31/01/14
  * Time: 21:57
  */
-package ru.mvpotter.model.marker;
+package io.github.mvpotter.model.marker;
 
 /**
  * YandexMap marker with content.<br />

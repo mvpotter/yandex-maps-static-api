@@ -4,7 +4,7 @@
  * Date: 31/01/14
  * Time: 20:47
  */
-package ru.mvpotter.model;
+package io.github.mvpotter.model;
 
 /**
  * Represents geographical coordinate.

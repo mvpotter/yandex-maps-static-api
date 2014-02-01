@@ -4,10 +4,10 @@
  * Date: 31/01/14
  * Time: 22:46
  */
-package ru.mvpotter;
+package io.github.mvpotter;
 
-import ru.mvpotter.model.Coordinate;
-import ru.mvpotter.model.YandexMap;
+import io.github.mvpotter.model.Coordinate;
+import io.github.mvpotter.model.YandexMap;
 
 /**
  * Builds Yandex API URL for further displaying on web components.

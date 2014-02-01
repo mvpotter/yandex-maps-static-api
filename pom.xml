@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.mvpotter</groupId>
+    <groupId>io.github.mvpotter</groupId>
     <artifactId>yandex-maps-api</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -93,7 +93,7 @@
                         <version>${maven-checkstyle-plugin.version}</version>
                         <configuration>
                             <consoleOutput>true</consoleOutput>
-                            <configLocation>checkstyle/checkstyle.xml</configLocation>
+                            <configLocation>io/github/mvpotter/checkstyle/checkstyle.xml</configLocation>
                         </configuration>
                         <dependencies>
                             <dependency>
