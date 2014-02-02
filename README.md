@@ -5,10 +5,13 @@ Library for working with [Yandex Maps Static API 1.x](http://api.yandex.ru/maps/
 
 Done
 ----
-
 Currently, yandex-maps-static-api supports only basic features:
-- Support for [map types](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_type.xml)
-- Support for setting a [map center](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_center.xml)
+- Support for basic map properties
+  - [map types](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_type.xml)
+  - [map center](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_center.xml)
+  - [viewport](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_viewport.xml)
+  - [scale](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_scale.xml)
+  - [API key](http://api.yandex.ru/maps/form.xml)
 
 Usage
 -----
@@ -24,6 +27,7 @@ String url = YandexApiUrlBuilder.build(yandexMap);
 ```
 Further plans
 -----
-- Add support for basic map properties ([viewport](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_viewport.xml), [scale](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_scale.xml), [localization](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml), [API key](http://api.yandex.ru/maps/form.xml))
-- Add support for [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
-- Add support for [Polylines](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml)
+- Support for [localization](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml)
+- Support for [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
+- Support for [Polylines](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml)
+- Support for [Geocoding](http://api.yandex.ru/maps/doc/geocoder/desc/concepts/About.xml)
