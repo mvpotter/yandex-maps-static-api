@@ -12,6 +12,7 @@ Currently, yandex-maps-static-api supports only basic features:
   - [viewport](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_viewport.xml)
   - [scale](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_scale.xml)
   - [API key](http://api.yandex.ru/maps/form.xml)
+  - [localization](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml)
 
 Usage
 -----
@@ -27,7 +28,6 @@ String url = YandexApiUrlBuilder.build(yandexMap);
 ```
 Further plans
 -----
-- Support for [localization](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml)
 - Support for [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
 - Support for [Polylines](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml)
 - Support for [Geocoding](http://api.yandex.ru/maps/doc/geocoder/desc/concepts/About.xml)
