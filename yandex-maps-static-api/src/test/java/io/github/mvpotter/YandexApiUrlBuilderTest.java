@@ -30,6 +30,11 @@ public class YandexApiUrlBuilderTest {
     private static final int WIDTH = 250;
     private static final int HEIGHT = 200;
     private static final String API_URL_WITH_SIZE = DEFAULT_API_URL + "&size=" + WIDTH + "," + HEIGHT;
+    // Language
+    private static final YandexMap.Language LANGUAGE = YandexMap.Language.RUSSIAN;
+    private static final String API_URL_WITH_LANGUAGE = DEFAULT_API_URL + "&lang=" +
+                                                        YandexMap.Language.RUSSIAN.getCode();
+
 
     @Test
     public void basicTestBuild() {
@@ -64,6 +69,13 @@ public class YandexApiUrlBuilderTest {
         YandexMap yandexMap = new YandexMap();
         yandexMap.setSize(new Size(WIDTH, HEIGHT));
         Assert.assertEquals(API_URL_WITH_SIZE, YandexApiUrlBuilder.build(yandexMap));
+    }
+
+    @Test
+    public void testBuildWithLanguage() {
+        YandexMap yandexMap = new YandexMap();
+        yandexMap.setLanguage(LANGUAGE);
+        Assert.assertEquals(API_URL_WITH_LANGUAGE, YandexApiUrlBuilder.build(yandexMap));
     }
 
 }

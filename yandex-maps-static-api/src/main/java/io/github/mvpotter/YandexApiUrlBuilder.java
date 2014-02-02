@@ -27,6 +27,7 @@ public final class YandexApiUrlBuilder {
     private static final String VIEWPORT_KEY = "spn";
     private static final String SCALE_KEY = "z";
     private static final String SIZE_KEY = "size";
+    private static final String LANGUAGE_KEY = "lang";
 
     /**
      * Creates YandexApiUrlBuilder.
@@ -54,6 +55,7 @@ public final class YandexApiUrlBuilder {
         addViewport(yandexMap, urlBuilder);
         addScale(yandexMap, urlBuilder);
         addSize(yandexMap, urlBuilder);
+        addLanguage(yandexMap, urlBuilder);
 
         final String url = urlBuilder.toString();
         return url.substring(0, url.length() - 1);
@@ -144,6 +146,18 @@ public final class YandexApiUrlBuilder {
                     append(size.getWidth()).append(COORDINATES_SEPARATOR).
                     append(size.getHeight()).append(ARGUMENTS_SEPARATOR);
         }
+    }
+
+    /**
+     * Add map language.
+     *
+     * @param yandexMap yandex map
+     * @param urlBuilder api url builder
+     */
+    private static void addLanguage(final YandexMap yandexMap, final StringBuilder urlBuilder) {
+        // add map viewport
+        final YandexMap.Language language = yandexMap.getLanguage();
+        urlBuilder.append(LANGUAGE_KEY).append(EQUALS).append(language.getCode()).append(ARGUMENTS_SEPARATOR);
     }
 
 }

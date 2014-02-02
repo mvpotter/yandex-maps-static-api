@@ -64,7 +64,7 @@ public class YandexMap {
      * YandexMap language.<br />
      * <b>Description: </b> http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml
      */
-    private Locale language = Locale.ENGLISH;
+    private Language language = Language.ENGLISH;
 
     /**
      * API key to access Yandex Maps services (not necessary, but advisable).<br />
@@ -239,7 +239,7 @@ public class YandexMap {
      *
      * @return map language
      */
-    public Locale getLanguage() {
+    public Language getLanguage() {
         return language;
     }
 
@@ -248,7 +248,7 @@ public class YandexMap {
      *
      * @param language map language.
      */
-    public void setLanguage(final Locale language) {
+    public void setLanguage(final Language language) {
         this.language = language;
     }
 
@@ -320,6 +320,31 @@ public class YandexMap {
          * Returns map type code that is used by Yandex Maps.
          *
          * @return map type code
+         */
+        public String getCode() {
+            return code;
+        }
+
+    }
+
+    /**
+     * Yandex map language.
+     */
+    public static enum Language {
+        ENGLISH("en-US"),
+        TURKEY("tr-TR"),
+        RUSSIAN("ru-RU");
+
+        private String code;
+
+        private Language(String code) {
+            this.code = code;
+        }
+
+        /**
+         * Get language code that is used by Yandex Maps.
+         *
+         * @return map language
          */
         public String getCode() {
             return code;
