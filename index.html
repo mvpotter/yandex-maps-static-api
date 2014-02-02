@@ -52,16 +52,23 @@
 <li><a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_viewport.xml">viewport</a></li>
 <li><a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_scale.xml">scale</a></li>
 <li><a href="http://api.yandex.ru/maps/form.xml">API key</a></li>
+<li><a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml">localization</a></li>
 </ul>
 </li>
 </ul><h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<div class="highlight highlight-Java"><pre><span class="c1">// Firstly, you need to create YandexMap object</span>
+<div class="highlight highlight-Java"><pre>
+<span class="c1">// Firstly, you need to create YandexMap object</span>
 <span class="n">YandexMap</span> <span class="n">yandexMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">YandexMap</span><span class="o">();</span>
-<span class="c1">// Init required fields</span>
 
-<span class="c1">// ...</span>
+<span class="c1">// Init required fields</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">setMapType</span><span class="o">(</span><span class="n">YandexMap</span><span class="o">.</span><span class="na">MapType</span><span class="o">.</span><span class="na">HYBRID</span><span class="o">);</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">setCenter</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="mf">83.098206f</span><span class="o">,</span> <span class="mf">54.851702f</span><span class="o">));</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">setViewport</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="mf">0.1</span><span class="o">,</span> <span class="mf">0.1</span><span class="o">);</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">setScale</span><span class="o">(</span><span class="mi">7</span><span class="o">);</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="k">new</span> <span class="n">Size</span><span class="o">(</span><span class="mi">500</span><span class="o">,</span> <span class="mi">500</span><span class="o">));</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">setLanguage</span><span class="o">(</span><span class="n">YandexMap</span><span class="o">.</span><span class="na">Language</span><span class="o">.</span><span class="na">RUSSIAN</span><span class="o">);</span>
 
 <span class="c1">// Use YandexApiUrlBuilder to generate appropriate URL for using in a browser or web component</span>
 <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="n">YandexApiUrlBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">yandexMap</span><span class="o">);</span>
@@ -71,8 +78,6 @@
 <a name="further-plans" class="anchor" href="#further-plans"><span class="octicon octicon-link"></span></a>Further plans</h2>
 
 <ul>
-<li>Support for <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml">localization</a>
-</li>
 <li>Support for <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml">Markers</a>
 </li>
 <li>Support for <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml">Polylines</a>
