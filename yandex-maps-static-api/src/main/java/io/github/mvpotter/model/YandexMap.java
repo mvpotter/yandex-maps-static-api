@@ -8,6 +8,7 @@
 package io.github.mvpotter.model;
 
 import io.github.mvpotter.model.marker.Marker;
+import io.github.mvpotter.model.polyline.Polyline;
 
 import java.util.*;
 
@@ -226,12 +227,12 @@ public class YandexMap {
     }
 
     /**
-     * Sets list of polylines.
+     * Adds polyline to map.
      *
-     * @param polylines list of polylines.
+     * @param polyline polyline.
      */
-    public void setPolylines(final List<Polyline> polylines) {
-        this.polylines = polylines;
+    public void addPolyline(final Polyline polyline) {
+        this.polylines.add(polyline);
     }
 
     /**

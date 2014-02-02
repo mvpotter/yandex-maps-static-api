@@ -9,6 +9,9 @@ package io.github.mvpotter;
 import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.Size;
 import io.github.mvpotter.model.YandexMap;
+import io.github.mvpotter.model.polyline.Polyline;
+
+import java.util.List;
 
 /**
  * Builds Yandex API URL for further displaying on web components.
@@ -28,6 +31,7 @@ public final class YandexApiUrlBuilder {
     private static final String SCALE_KEY = "z";
     private static final String SIZE_KEY = "size";
     private static final String LANGUAGE_KEY = "lang";
+    public static final String POLYLINE_KEY = "pl";
 
     /**
      * Creates YandexApiUrlBuilder.
@@ -37,7 +41,7 @@ public final class YandexApiUrlBuilder {
     }
 
     /**
-     * Build URL in accordance with YandexMap object.
+     * Builds URL in accordance with YandexMap object.
      *
      * @param yandexMap yandex map object
      * @return url
@@ -56,13 +60,14 @@ public final class YandexApiUrlBuilder {
         addViewport(yandexMap, urlBuilder);
         addScale(yandexMap, urlBuilder);
         addSize(yandexMap, urlBuilder);
+        addPolylines(yandexMap, urlBuilder);
 
-        final String url = urlBuilder.toString();
-        return url.substring(0, url.length() - 1);
+        urlBuilder.deleteCharAt(urlBuilder.length() - 1);
+        return urlBuilder.toString();
     }
 
     /**
-     * Add api key.
+     * Adds api key.
      *
      * @param yandexMap yandex map
      * @param urlBuilder api url builder
@@ -75,7 +80,7 @@ public final class YandexApiUrlBuilder {
     }
 
     /**
-     * Add map type.
+     * Adds map type.
      *
      * @param yandexMap yandex map
      * @param urlBuilder api url builder
@@ -86,7 +91,7 @@ public final class YandexApiUrlBuilder {
     }
 
     /**
-     * Add map center.
+     * Adds map center.
      *
      * @param yandexMap yandex map
      * @param urlBuilder api url builder
@@ -99,7 +104,7 @@ public final class YandexApiUrlBuilder {
     }
 
     /**
-     * Add map viewport.
+     * Adds map viewport.
      *
      * @param yandexMap yandex map
      * @param urlBuilder api url builder
@@ -117,7 +122,7 @@ public final class YandexApiUrlBuilder {
     }
 
     /**
-     * Add map scale.
+     * Adds map scale.
      *
      * @param yandexMap yandex map
      * @param urlBuilder api url builder
@@ -131,7 +136,7 @@ public final class YandexApiUrlBuilder {
     }
 
     /**
-     * Add map size.
+     * Adds map size.
      *
      * @param yandexMap yandex map
      * @param urlBuilder api url builder
@@ -149,7 +154,7 @@ public final class YandexApiUrlBuilder {
     }
 
     /**
-     * Add map language.
+     * Adds map language.
      *
      * @param yandexMap yandex map
      * @param urlBuilder api url builder
@@ -158,6 +163,30 @@ public final class YandexApiUrlBuilder {
         // add map viewport
         final YandexMap.Language language = yandexMap.getLanguage();
         urlBuilder.append(LANGUAGE_KEY).append(EQUALS).append(language.getCode()).append(ARGUMENTS_SEPARATOR);
+    }
+
+    /**
+     * Adds polylines to map.
+     *
+     * @param yandexMap yandex map
+     * @param urlBuilder api url builder
+     */
+    private static void addPolylines(final YandexMap yandexMap, final StringBuilder urlBuilder) {
+        for (Polyline polyline: yandexMap.getPolylines()) {
+            List<Coordinate> points = polyline.getPoints();
+            if (!points.isEmpty()) {
+                urlBuilder.append(POLYLINE_KEY).append(EQUALS);
+                urlBuilder.append("c").append(":").append(polyline.getHexColor()).append(",");
+                urlBuilder.append("w").append(":").append(polyline.getWidth());
+                for (Coordinate point: polyline.getPoints()) {
+                    urlBuilder.append(COORDINATES_SEPARATOR);
+                    urlBuilder.append(point.getLongitude()).append(COORDINATES_SEPARATOR).append(point.getLatitude());
+                }
+                urlBuilder.append("~");
+            }
+        }
+        urlBuilder.deleteCharAt(urlBuilder.length() - 1);
+        urlBuilder.append(ARGUMENTS_SEPARATOR);
     }
 
 }

@@ -8,11 +8,13 @@ package io.github.mvpotter;
 
 import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.Size;
+import io.github.mvpotter.model.YandexMap;
+import io.github.mvpotter.model.polyline.Curve;
 import org.junit.Assert;
 import org.junit.Test;
-import io.github.mvpotter.model.YandexMap;
 
 public class YandexApiUrlBuilderTest {
+
     // Basic URL
     private static final String DEFAULT_API_URL = "http://static-maps.yandex.ru/1.x/?"
                                                   + "l=map&ll=83.098206,54.851704&lang=en-US";
@@ -64,6 +66,24 @@ public class YandexApiUrlBuilderTest {
         YandexMap yandexMap = new YandexMap();
         yandexMap.setSize(new Size(WIDTH, HEIGHT));
         Assert.assertEquals(API_URL_WITH_SIZE, YandexApiUrlBuilder.build(yandexMap));
+    }
+
+    @Test
+    public void testBuildWithCurve() {
+        YandexMap yandexMap = new YandexMap();
+        Curve curve = new Curve();
+        curve.addPoint(new Coordinate(37.656577f, 55.741176f));
+        curve.addPoint(new Coordinate(37.656748f, 55.741419f));
+        curve.addPoint(new Coordinate(37.655131f, 55.741814f));
+        curve.addPoint(new Coordinate(37.658257f, 55.742524f));
+        curve.addPoint(new Coordinate(37.659811f, 55.743066f));
+        curve.addPoint(new Coordinate(37.659667f, 55.743233f));
+        curve.addPoint(new Coordinate(37.659551f, 55.743603f));
+        curve.addPoint(new Coordinate(37.659775f, 55.743928f));
+        curve.addPoint(new Coordinate(37.662398f, 55.745281f));
+        yandexMap.addPolyline(curve);
+        System.out.println(YandexApiUrlBuilder.build(yandexMap));
+        //Assert.assertEquals(API_URL_WITH_SIZE, YandexApiUrlBuilder.build(yandexMap));
     }
 
 }

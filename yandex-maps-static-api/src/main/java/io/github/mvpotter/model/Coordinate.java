@@ -9,7 +9,7 @@ package io.github.mvpotter.model;
 /**
  * Represents geographical coordinate.
  */
-public class Coordinate {
+public class Coordinate implements Cloneable {
 
     /**
      * Longitude.
@@ -71,4 +71,5 @@ public class Coordinate {
     public String toString() {
         return String.format("(%f, %f)", longitude, latitude);
     }
+
 }
