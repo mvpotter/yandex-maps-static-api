@@ -51,11 +51,11 @@ public final class YandexApiUrlBuilder {
 
         addMapType(yandexMap, urlBuilder);
         addMapCenter(yandexMap, urlBuilder);
+        addLanguage(yandexMap, urlBuilder);
         addApiKey(yandexMap, urlBuilder);
         addViewport(yandexMap, urlBuilder);
         addScale(yandexMap, urlBuilder);
         addSize(yandexMap, urlBuilder);
-        addLanguage(yandexMap, urlBuilder);
 
         final String url = urlBuilder.toString();
         return url.substring(0, url.length() - 1);

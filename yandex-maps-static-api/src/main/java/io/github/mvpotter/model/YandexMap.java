@@ -337,7 +337,12 @@ public class YandexMap {
 
         private String code;
 
-        private Language(String code) {
+        /**
+         * Create map language.
+         *
+         * @param code language code
+         */
+        private Language(final String code) {
             this.code = code;
         }
 
