@@ -12,22 +12,28 @@ Currently, yandex-maps-static-api supports only basic features:
   - [viewport](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_viewport.xml)
   - [scale](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_scale.xml)
   - [API key](http://api.yandex.ru/maps/form.xml)
+  - [localization](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml)
 
 Usage
 -----
 ```Java
+
 // Firstly, you need to create YandexMap object
 YandexMap yandexMap = new YandexMap();
-// Init required fields
 
-// ...
+// Init required fields
+yandexMap.setMapType(YandexMap.MapType.HYBRID);
+yandexMap.setCenter(new Coordinate(83.098206f, 54.851702f));
+yandexMap.setViewport(new Coordinate(0.1, 0.1);
+yandexMap.setScale(7);
+yandexMap.setSize(new Size(500, 500));
+yandexMap.setLanguage(YandexMap.Language.RUSSIAN);
 
 // Use YandexApiUrlBuilder to generate appropriate URL for using in a browser or web component
 String url = YandexApiUrlBuilder.build(yandexMap);
 ```
 Further plans
 -----
-- Support for [localization](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml)
 - Support for [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
 - Support for [Polylines](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml)
 - Support for [Geocoding](http://api.yandex.ru/maps/doc/geocoder/desc/concepts/About.xml)
