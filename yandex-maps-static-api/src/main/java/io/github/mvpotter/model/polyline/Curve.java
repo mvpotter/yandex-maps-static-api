@@ -10,5 +10,5 @@ package io.github.mvpotter.model.polyline;
  * Curve for representation on the map.<br />
  * <b>Description: http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml</b>
  */
-public class Curve extends AbstractPolyline {
+public class Curve extends Polyline {
 }

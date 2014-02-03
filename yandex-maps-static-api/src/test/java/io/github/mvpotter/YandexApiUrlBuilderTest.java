@@ -13,6 +13,8 @@ import io.github.mvpotter.model.polyline.Curve;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.awt.*;
+
 public class YandexApiUrlBuilderTest {
 
     // Basic URL
@@ -33,6 +35,12 @@ public class YandexApiUrlBuilderTest {
     private static final int WIDTH = 250;
     private static final int HEIGHT = 200;
     private static final String API_URL_WITH_SIZE = DEFAULT_API_URL + "&size=" + WIDTH + "," + HEIGHT;
+    // Curve
+    private static final String API_URL_WITH_CURVES = "http://static-maps.yandex.ru/1.x/?l=map&ll=37.65981,55.743065&"
+                                                      + "lang=en-US&pl=c:000000ff,w:5,37.656578,55.741177,"
+                                                      + "37.65675,55.74142,37.655132,55.741814,37.658257,55.742523~"
+                                                      + "c:ffc800ff,w:5,37.65981,55.743065,37.659668,55.743233,"
+                                                      + "37.65955,55.743603,37.659775,55.743927,37.6624,55.74528";
 
     @Test
     public void basicTestBuild() {
@@ -71,19 +79,25 @@ public class YandexApiUrlBuilderTest {
     @Test
     public void testBuildWithCurve() {
         YandexMap yandexMap = new YandexMap();
+        yandexMap.setCenter(new Coordinate(37.659811f, 55.743066f));
         Curve curve = new Curve();
+        curve.setColor(Color.BLACK);
         curve.addPoint(new Coordinate(37.656577f, 55.741176f));
         curve.addPoint(new Coordinate(37.656748f, 55.741419f));
         curve.addPoint(new Coordinate(37.655131f, 55.741814f));
         curve.addPoint(new Coordinate(37.658257f, 55.742524f));
+        yandexMap.addPolyline(curve);
+
+        curve = new Curve();
+        curve.setColor(Color.ORANGE);
         curve.addPoint(new Coordinate(37.659811f, 55.743066f));
         curve.addPoint(new Coordinate(37.659667f, 55.743233f));
         curve.addPoint(new Coordinate(37.659551f, 55.743603f));
         curve.addPoint(new Coordinate(37.659775f, 55.743928f));
         curve.addPoint(new Coordinate(37.662398f, 55.745281f));
         yandexMap.addPolyline(curve);
-        System.out.println(YandexApiUrlBuilder.build(yandexMap));
-        //Assert.assertEquals(API_URL_WITH_SIZE, YandexApiUrlBuilder.build(yandexMap));
+
+        Assert.assertEquals(API_URL_WITH_CURVES, YandexApiUrlBuilder.build(yandexMap));
     }
 
 }

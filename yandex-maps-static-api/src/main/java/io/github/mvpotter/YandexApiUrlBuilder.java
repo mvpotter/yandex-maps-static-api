@@ -31,7 +31,12 @@ public final class YandexApiUrlBuilder {
     private static final String SCALE_KEY = "z";
     private static final String SIZE_KEY = "size";
     private static final String LANGUAGE_KEY = "lang";
-    public static final String POLYLINE_KEY = "pl";
+    private static final String POLYLINE_KEY = "pl";
+
+    private static final String COLOR_KEY = "c";
+    private static final String WIDTH_KEY = "w";
+    private static final String ENTITIES_SEPARATOR = "~";
+    private static final String COLON = ":";
 
     /**
      * Creates YandexApiUrlBuilder.
@@ -172,21 +177,26 @@ public final class YandexApiUrlBuilder {
      * @param urlBuilder api url builder
      */
     private static void addPolylines(final YandexMap yandexMap, final StringBuilder urlBuilder) {
-        for (Polyline polyline: yandexMap.getPolylines()) {
-            List<Coordinate> points = polyline.getPoints();
-            if (!points.isEmpty()) {
-                urlBuilder.append(POLYLINE_KEY).append(EQUALS);
-                urlBuilder.append("c").append(":").append(polyline.getHexColor()).append(",");
-                urlBuilder.append("w").append(":").append(polyline.getWidth());
-                for (Coordinate point: polyline.getPoints()) {
-                    urlBuilder.append(COORDINATES_SEPARATOR);
-                    urlBuilder.append(point.getLongitude()).append(COORDINATES_SEPARATOR).append(point.getLatitude());
+        final List<Polyline> polylines = yandexMap.getPolylines();
+        if (!polylines.isEmpty()) {
+            urlBuilder.append(POLYLINE_KEY).append(EQUALS);
+            for (Polyline polyline: yandexMap.getPolylines()) {
+                final List<Coordinate> points = polyline.getPoints();
+                if (!points.isEmpty()) {
+                    urlBuilder.append(COLOR_KEY).append(COLON).append(polyline.getHexColor()).
+                               append(COORDINATES_SEPARATOR);
+                    urlBuilder.append(WIDTH_KEY).append(COLON).append(polyline.getWidth());
+                    for (Coordinate point: polyline.getPoints()) {
+                        urlBuilder.append(COORDINATES_SEPARATOR);
+                        urlBuilder.append(point.getLongitude()).append(COORDINATES_SEPARATOR).
+                                   append(point.getLatitude());
+                    }
+                    urlBuilder.append(ENTITIES_SEPARATOR);
                 }
-                urlBuilder.append("~");
             }
+            urlBuilder.deleteCharAt(urlBuilder.length() - 1);
+            urlBuilder.append(ARGUMENTS_SEPARATOR);
         }
-        urlBuilder.deleteCharAt(urlBuilder.length() - 1);
-        urlBuilder.append(ARGUMENTS_SEPARATOR);
     }
 
 }

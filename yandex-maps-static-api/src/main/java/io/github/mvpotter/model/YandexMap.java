@@ -10,7 +10,10 @@ package io.github.mvpotter.model;
 import io.github.mvpotter.model.marker.Marker;
 import io.github.mvpotter.model.polyline.Polyline;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Represents Yandex YandexMap object.
