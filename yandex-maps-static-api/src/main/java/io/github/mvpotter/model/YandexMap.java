@@ -10,6 +10,7 @@ package io.github.mvpotter.model;
 import io.github.mvpotter.model.marker.Marker;
 import io.github.mvpotter.model.polyline.Polyline;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,14 +21,14 @@ import java.util.Set;
  */
 public class YandexMap {
 
-    public static final float DEFAULT_VIEWPORT_SIZE = 0.01f;
+    public static final BigDecimal DEFAULT_VIEWPORT_SIZE = new BigDecimal("0.01");
     public static final int DEFAULT_SCALE = 10;
     public static final int MIN_SCALE = 0;
     public static final int MAX_SCALE = 17;
     public static final int DEFAULT_SIZE = 450;
 
-    private static final float DEFAULT_LONGITUDE = 83.098206f;
-    private static final float DEFAULT_LATITUDE = 54.851702f;
+    private static final String DEFAULT_LONGITUDE = "83.098206";
+    private static final String DEFAULT_LATITUDE = "54.851702";
 
     /**
      * YandexMap type.<br />

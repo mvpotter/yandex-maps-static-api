@@ -6,6 +6,8 @@
  */
 package io.github.mvpotter.model;
 
+import java.math.BigDecimal;
+
 /**
  * Represents geographical coordinate.
  */
@@ -14,11 +16,11 @@ public class Coordinate implements Cloneable {
     /**
      * Longitude.
      */
-    private float longitude;
+    private BigDecimal longitude;
     /**
      * Latitude.
      */
-    private float latitude;
+    private BigDecimal latitude;
 
     /**
      * Creates coordinate object.
@@ -26,9 +28,20 @@ public class Coordinate implements Cloneable {
      * @param longitude longitude
      * @param latitude latitude
      */
-    public Coordinate(final float longitude, final float latitude) {
-        this.longitude = longitude;
-        this.latitude = latitude;
+    public Coordinate(final String longitude, final String latitude) {
+        setLongitude(longitude);
+        setLatitude(latitude);
+    }
+
+    /**
+     * Creates coordinate object.
+     *
+     * @param longitude longitude
+     * @param latitude latitude
+     */
+    public Coordinate(final BigDecimal longitude, final BigDecimal latitude) {
+        setLongitude(longitude);
+        setLatitude(latitude);
     }
 
     /**
@@ -36,7 +49,7 @@ public class Coordinate implements Cloneable {
      *
      * @return longitude
      */
-    public float getLongitude() {
+    public BigDecimal getLongitude() {
         return longitude;
     }
 
@@ -45,7 +58,16 @@ public class Coordinate implements Cloneable {
      *
      * @param longitude longitude
      */
-    public void setLongitude(final float longitude) {
+    public void setLongitude(final String longitude) {
+        this.longitude = new BigDecimal(longitude);
+    }
+
+    /**
+     * Sets longitude.
+     *
+     * @param longitude longitude
+     */
+    public void setLongitude(final BigDecimal longitude) {
         this.longitude = longitude;
     }
 
@@ -54,7 +76,7 @@ public class Coordinate implements Cloneable {
      *
      * @return latitude
      */
-    public float getLatitude() {
+    public BigDecimal getLatitude() {
         return latitude;
     }
 
@@ -63,7 +85,16 @@ public class Coordinate implements Cloneable {
      *
      * @param latitude latitude
      */
-    public void setLatitude(final float latitude) {
+    public void setLatitude(final String latitude) {
+        this.latitude = new BigDecimal(latitude);
+    }
+
+    /**
+     * Sets latitude.
+     *
+     * @param latitude latitude
+     */
+    public void setLatitude(final BigDecimal latitude) {
         this.latitude = latitude;
     }
 

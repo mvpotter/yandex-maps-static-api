@@ -118,8 +118,8 @@ public final class YandexApiUrlBuilder {
         // add map viewport
         final Coordinate viewport = yandexMap.getViewport();
         if (viewport != null
-            && viewport.getLongitude() != YandexMap.DEFAULT_VIEWPORT_SIZE
-            && viewport.getLatitude() != YandexMap.DEFAULT_VIEWPORT_SIZE) {
+            && !viewport.getLongitude().equals(YandexMap.DEFAULT_VIEWPORT_SIZE)
+            && !viewport.getLatitude().equals(YandexMap.DEFAULT_VIEWPORT_SIZE)) {
             urlBuilder.append(VIEWPORT_KEY).append(EQUALS).
                     append(viewport.getLongitude()).append(COORDINATES_SEPARATOR).
                     append(viewport.getLatitude()).append(ARGUMENTS_SEPARATOR);
