@@ -57,31 +57,39 @@
 
 <ul>
 <li>Curves</li>
+<li>Polygons</li>
 </ul>
 </li>
 </ul><h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<div class="highlight highlight-Java"><pre>
-<span class="c1">// Firstly, you need to create YandexMap object</span>
+<div class="highlight highlight-Java"><pre><span class="c1">// Firstly, you need to create YandexMap object</span>
 <span class="n">YandexMap</span> <span class="n">yandexMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">YandexMap</span><span class="o">();</span>
 
 <span class="c1">// Init required fields</span>
 <span class="n">yandexMap</span><span class="o">.</span><span class="na">setMapType</span><span class="o">(</span><span class="n">YandexMap</span><span class="o">.</span><span class="na">MapType</span><span class="o">.</span><span class="na">HYBRID</span><span class="o">);</span>
-<span class="n">yandexMap</span><span class="o">.</span><span class="na">setCenter</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="mf">37.65675f</span><span class="o">,</span><span class="mf">55.74142f</span><span class="o">));</span>
-<span class="n">yandexMap</span><span class="o">.</span><span class="na">setViewport</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="mf">0.1</span><span class="o">,</span> <span class="mf">0.1</span><span class="o">);</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">setCenter</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.660286"</span><span class="o">,</span> <span class="s">"55.743301"</span><span class="o">));</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">setViewport</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"0.005"</span><span class="o">,</span> <span class="s">"0.005"</span><span class="o">));</span>
 <span class="n">yandexMap</span><span class="o">.</span><span class="na">setScale</span><span class="o">(</span><span class="mi">7</span><span class="o">);</span>
-<span class="n">yandexMap</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="k">new</span> <span class="n">Size</span><span class="o">(</span><span class="mi">500</span><span class="o">,</span> <span class="mi">500</span><span class="o">));</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="k">new</span> <span class="n">Size</span><span class="o">(</span><span class="mi">650</span><span class="o">,</span> <span class="mi">450</span><span class="o">));</span>
 <span class="n">yandexMap</span><span class="o">.</span><span class="na">setLanguage</span><span class="o">(</span><span class="n">YandexMap</span><span class="o">.</span><span class="na">Language</span><span class="o">.</span><span class="na">RUSSIAN</span><span class="o">);</span>
 
 <span class="c1">// Add curve (you can add multiple curves if necessary)</span>
 <span class="n">Curve</span> <span class="n">curve</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Curve</span><span class="o">();</span>
 <span class="n">curve</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">BLACK</span><span class="o">);</span>
-<span class="n">curve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="mf">37.656577f</span><span class="o">,</span> <span class="mf">55.741176f</span><span class="o">));</span>
-<span class="n">curve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="mf">37.656748f</span><span class="o">,</span> <span class="mf">55.741419f</span><span class="o">));</span>
-<span class="n">curve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="mf">37.655131f</span><span class="o">,</span> <span class="mf">55.741814f</span><span class="o">));</span>
-<span class="n">curve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="mf">37.658257f</span><span class="o">,</span> <span class="mf">55.742524f</span><span class="o">));</span>
+<span class="n">curve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.656577"</span><span class="o">,</span> <span class="s">"55.741176"</span><span class="o">));</span>
+<span class="n">curve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.656748"</span><span class="o">,</span> <span class="s">"55.741419"</span><span class="o">));</span>
+<span class="n">curve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.655131"</span><span class="o">,</span> <span class="s">"55.741814"</span><span class="o">));</span>
+<span class="n">curve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.658257"</span><span class="o">,</span> <span class="s">"55.742524"</span><span class="o">));</span>
 <span class="n">yandexMap</span><span class="o">.</span><span class="na">addPolyline</span><span class="o">(</span><span class="n">curve</span><span class="o">);</span>
+
+<span class="n">Polygon</span> <span class="n">polygon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Polygon</span><span class="o">();</span>
+<span class="n">polygon</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">WHITE</span><span class="o">);</span>
+<span class="n">polygon</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.660286"</span><span class="o">,</span> <span class="s">"55.743301"</span><span class="o">));</span>
+<span class="n">polygon</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.661831"</span><span class="o">,</span> <span class="s">"55.745165"</span><span class="o">));</span>
+<span class="n">polygon</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.662947"</span><span class="o">,</span> <span class="s">"55.743108"</span><span class="o">));</span>
+<span class="n">polygon</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.660286"</span><span class="o">,</span> <span class="s">"55.743301"</span><span class="o">));</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">addPolyline</span><span class="o">(</span><span class="n">polygon</span><span class="o">);</span>
 
 <span class="c1">// Use YandexApiUrlBuilder to generate appropriate URL for using in a browser or web component</span>
 <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="n">YandexApiUrlBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">yandexMap</span><span class="o">);</span>
@@ -94,7 +102,6 @@
 <li>Support for <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml">Polylines</a>
 
 <ul>
-<li>Polygons</li>
 <li>Base64 coordinates encoding</li>
 </ul>
 </li>
