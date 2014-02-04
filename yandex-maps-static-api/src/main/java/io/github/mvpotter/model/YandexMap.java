@@ -25,6 +25,8 @@ public class YandexMap {
     public static final int DEFAULT_SCALE = 10;
     public static final int MIN_SCALE = 0;
     public static final int MAX_SCALE = 17;
+    public static final int MAX_WIDTH = 650;
+    public static final int MAX_HEIGHT = 450;
     public static final int DEFAULT_SIZE = 450;
 
     private static final String DEFAULT_LONGITUDE = "83.098206";
@@ -201,6 +203,12 @@ public class YandexMap {
      */
     public void setSize(final Size size) {
         this.size = size;
+        if (this.size.getWidth() > MAX_WIDTH) {
+            this.size.setWidth(MAX_WIDTH);
+        }
+        if (this.size.getHeight() > MAX_HEIGHT) {
+            this.size.setHeight(MAX_HEIGHT);
+        }
     }
 
     /**
