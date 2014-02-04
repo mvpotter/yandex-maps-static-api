@@ -7,7 +7,7 @@
     <parent>
         <groupId>io.github.mvpotter</groupId>
         <artifactId>yandex-maps-api</artifactId>
-        <version>0.2-SNAPSHOT</version>
+        <version>0.3</version>
     </parent>
 
     <artifactId>yandex-maps-static-api</artifactId>
