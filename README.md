@@ -5,16 +5,17 @@ Library for working with [Yandex Maps Static API 1.x](http://api.yandex.ru/maps/
 
 Done
 ----
-- Support for basic map properties
+- Support for map properties
   - [map types](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_type.xml)
   - [map center](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_center.xml)
   - [viewport](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_viewport.xml)
   - [scale](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_scale.xml)
   - [API key](http://api.yandex.ru/maps/form.xml)
   - [localization](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml)
-- Basic support for [Polylines](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml)
+- Support for [Polylines](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml)
   - Curves
   - Polygons
+  - Coordinates encoding
 
 Usage
 -----
@@ -52,7 +53,5 @@ String url = YandexApiUrlBuilder.build(yandexMap);
 ```
 Further plans
 -----
-- Support for [Polylines](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml)
-  - Base64 coordinates encoding
 - Support for [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
 - Support for [Geocoding](http://api.yandex.ru/maps/doc/geocoder/desc/concepts/About.xml)
