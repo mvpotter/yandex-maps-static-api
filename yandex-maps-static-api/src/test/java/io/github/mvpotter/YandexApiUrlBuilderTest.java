@@ -10,6 +10,7 @@ import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.Size;
 import io.github.mvpotter.model.YandexMap;
 import io.github.mvpotter.model.polyline.Curve;
+import io.github.mvpotter.model.polyline.Polygon;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -39,10 +40,17 @@ public class YandexApiUrlBuilderTest {
     // Curve
     private static final String API_URL_WITH_CURVES = "http://static-maps.yandex.ru/1.x/?l=map&ll=37.659811,55.743066&"
                                                       + "lang=en-US&pl=c:000000ff,w:5,37.656577,55.741176,"
-                                                      + "37.656748,55.741419,37.655131,55.741814,37.658257,"
-                                                      + "55.742524~c:ffc800ff,w:5,37.659811,55.743066,"
+                                                      + "37.656748,55.741419,37.655131,55.741814,37.658257,55.742524"
+                                                      + "~c:ffc800ff,w:5,37.659811,55.743066,"
                                                       + "37.659667,55.743233,37.659551,55.743603,"
                                                       + "37.659775,55.743928,37.662398,55.745281";
+    // Polygon
+    private static final String API_URL_WITH_POLYGONS = "http://static-maps.yandex.ru/1.x/?l=map&"
+                                                        + "ll=37.659811,55.743066&"
+                                                        + "lang=en-US&pl=c:000000ff,f:00ff00a0,w:5,37.656705,55.741092,"
+                                                        + "37.653551,55.742387,37.663805,55.744318,37.656705,55.741092"
+                                                        + "~c:ffffffff,f:00ff00a0,w:5,37.660286,55.743301,"
+                                                        + "37.661831,55.745165,37.662947,55.743108,37.660286,55.743301";
 
     @Test
     public void basicTestBuild() {
@@ -79,7 +87,7 @@ public class YandexApiUrlBuilderTest {
     }
 
     @Test
-    public void testBuildWithCurve() {
+    public void testBuildWithCurves() {
         YandexMap yandexMap = new YandexMap();
         yandexMap.setCenter(new Coordinate("37.659811", "55.743066"));
         Curve curve = new Curve();
@@ -100,6 +108,29 @@ public class YandexApiUrlBuilderTest {
         yandexMap.addPolyline(curve);
 
         Assert.assertEquals(API_URL_WITH_CURVES, YandexApiUrlBuilder.build(yandexMap));
+    }
+
+    @Test
+    public void testBuildWithPolygons() {
+        YandexMap yandexMap = new YandexMap();
+        yandexMap.setCenter(new Coordinate("37.659811", "55.743066"));
+        Polygon polygon = new Polygon();
+        polygon.setColor(Color.BLACK);
+        polygon.addPoint(new Coordinate("37.656705", "55.741092"));
+        polygon.addPoint(new Coordinate("37.653551", "55.742387"));
+        polygon.addPoint(new Coordinate("37.663805", "55.744318"));
+        polygon.addPoint(new Coordinate("37.656705", "55.741092"));
+        yandexMap.addPolyline(polygon);
+
+        polygon = new Polygon();
+        polygon.setColor(Color.WHITE);
+        polygon.addPoint(new Coordinate("37.660286", "55.743301"));
+        polygon.addPoint(new Coordinate("37.661831", "55.745165"));
+        polygon.addPoint(new Coordinate("37.662947", "55.743108"));
+        polygon.addPoint(new Coordinate("37.660286", "55.743301"));
+        yandexMap.addPolyline(polygon);
+
+        Assert.assertEquals(API_URL_WITH_POLYGONS, YandexApiUrlBuilder.build(yandexMap));
     }
 
 }

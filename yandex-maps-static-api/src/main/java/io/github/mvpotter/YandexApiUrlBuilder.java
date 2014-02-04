@@ -9,6 +9,7 @@ package io.github.mvpotter;
 import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.Size;
 import io.github.mvpotter.model.YandexMap;
+import io.github.mvpotter.model.polyline.Polygon;
 import io.github.mvpotter.model.polyline.Polyline;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public final class YandexApiUrlBuilder {
     private static final String POLYLINE_KEY = "pl";
 
     private static final String COLOR_KEY = "c";
+    private static final String FILLING_COLOR_KEY = "f";
     private static final String WIDTH_KEY = "w";
     private static final String ENTITIES_SEPARATOR = "~";
     private static final String COLON = ":";
@@ -183,20 +185,69 @@ public final class YandexApiUrlBuilder {
             for (Polyline polyline: yandexMap.getPolylines()) {
                 final List<Coordinate> points = polyline.getPoints();
                 if (!points.isEmpty()) {
-                    urlBuilder.append(COLOR_KEY).append(COLON).append(polyline.getHexColor()).
-                               append(COORDINATES_SEPARATOR);
-                    urlBuilder.append(WIDTH_KEY).append(COLON).append(polyline.getWidth());
-                    for (Coordinate point: polyline.getPoints()) {
-                        urlBuilder.append(COORDINATES_SEPARATOR);
-                        urlBuilder.append(point.getLongitude()).append(COORDINATES_SEPARATOR).
-                                   append(point.getLatitude());
+                    urlBuilder.append(renderPolylineColor(polyline.getHexColor()));
+                    if (polyline instanceof Polygon) {
+                        urlBuilder.append(COORDINATES_SEPARATOR).
+                                   append(renderPolygonFillingColor(((Polygon) polyline).getHexFillingColor()));
                     }
-                    urlBuilder.append(ENTITIES_SEPARATOR);
+                    urlBuilder.append(COORDINATES_SEPARATOR).
+                               append(renderPolylineWidth(polyline.getWidth())).
+                               append(COORDINATES_SEPARATOR).
+                               append(renderCoordinatesList(polyline.getPoints())).
+                               append(ENTITIES_SEPARATOR);
                 }
             }
             urlBuilder.deleteCharAt(urlBuilder.length() - 1);
             urlBuilder.append(ARGUMENTS_SEPARATOR);
         }
+    }
+
+    /**
+     * Returns string that represents polyline color.
+     *
+     * @param color polyline color
+     * @return string that represents polyline color
+     */
+    private static String renderPolylineColor(final String color) {
+        return COLOR_KEY + COLON + color;
+    }
+
+    /**
+     * Returns string that represents polygon filling color.
+     *
+     * @param fillingColor polygon filling color
+     * @return string that represents polygon filling color
+     */
+    private static String renderPolygonFillingColor(final String fillingColor) {
+        return FILLING_COLOR_KEY + COLON + fillingColor;
+    }
+
+    /**
+     * Returns string that represents polyline width.
+     *
+     * @param width polyline width
+     * @return string that represents polyline width
+     */
+    private static String renderPolylineWidth(final int width) {
+        return WIDTH_KEY + COLON + width;
+    }
+
+    /**
+     * Returns string that represents list of coordinates.
+     *
+     * @param coordinates list of coordinates
+     * @return string that represents list of coordinates
+     */
+    private static String renderCoordinatesList(final List<Coordinate> coordinates) {
+        final StringBuilder stringBuilder = new StringBuilder();
+        if (coordinates != null && !coordinates.isEmpty()) {
+            for (Coordinate point: coordinates) {
+                stringBuilder.append(point.getLongitude()).append(COORDINATES_SEPARATOR).
+                              append(point.getLatitude()).append(COORDINATES_SEPARATOR);
+            }
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        }
+        return stringBuilder.toString();
     }
 
 }
