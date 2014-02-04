@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * Encodes coordinates for optimized representation.
  */
+// optimize performance if necessary
 public final class CoordinatesEncoder {
 
     private static final String ENCODING_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_=";
@@ -23,6 +24,7 @@ public final class CoordinatesEncoder {
     private static final int BYTE = 8;
     private static final int ENCODING_STEP = 6;
     private static final String ABSENT_HALF_BYTE_CODE = "=";
+    private static final String ZERO_BIT = "0";
 
     /**
      * Creates encoder.
@@ -41,7 +43,6 @@ public final class CoordinatesEncoder {
         if (points == null || points.isEmpty()) {
             return null;
         }
-        String encoded = null;
         final List<String> binaryRepresentations = new LinkedList<String>();
         binaryRepresentations.add(to32Bits(points.get(0).getLongitude().multiply(MULTIPLIER)));
         binaryRepresentations.add(to32Bits(points.get(0).getLatitude().multiply(MULTIPLIER)));
@@ -53,10 +54,8 @@ public final class CoordinatesEncoder {
             binaryRepresentations.add(to32Bits(secondPoint.getLatitude().multiply(MULTIPLIER).
                                                subtract(firstPoint.getLatitude().multiply(MULTIPLIER))));
         }
-        encoded = encodeBinaryStrings(binaryRepresentations);
-        System.out.println(encoded);
 
-        return encoded;
+        return encodeBinaryStrings(binaryRepresentations);
     }
 
     /**
@@ -70,7 +69,7 @@ public final class CoordinatesEncoder {
         final StringBuilder stringBuilder = new StringBuilder(binaryString);
         if (binaryString.length() < BITS) {
             for (int i = 0; i < BITS - binaryString.length(); i++) {
-                stringBuilder.insert(0, "0");
+                stringBuilder.insert(0, ZERO_BIT);
             }
         }
         return stringBuilder.toString();
@@ -117,23 +116,20 @@ public final class CoordinatesEncoder {
             final char encoded = ENCODING_STRING.charAt(position);
             encodedStringBuilder.append(encoded);
         }
-        for (int i = 0; i < (binaryString.length() % ENCODING_STEP) / 2; i++) {
+
+        final int reminder = binaryString.length() % ENCODING_STEP;
+        if (reminder > 0) {
+            String lastString = binaryString.substring(binaryString.length() - reminder);
+            for (int i = 0; i < ENCODING_STEP - reminder; i++) {
+                lastString += ZERO_BIT;
+            }
+            encodedStringBuilder.append(ENCODING_STRING.charAt(Integer.parseInt(lastString, 2)));
+        }
+
+        for (int i = 0; i < ENCODING_STEP - reminder; i += 2) {
             encodedStringBuilder.append(ABSENT_HALF_BYTE_CODE);
         }
         return encodedStringBuilder.toString();
-    }
-
-    /**
-     * Main.
-     * @param args args
-     */
-    public static void main(final String[] args) {
-        final List<Coordinate> points = new LinkedList<Coordinate>();
-        points.add(new Coordinate("37.593578", "55.735094"));
-        points.add(new Coordinate("37.592159", "55.732469"));
-        points.add(new Coordinate("37.589374", "55.734162"));
-
-        CoordinatesEncoder.encode(points);
     }
 
 }

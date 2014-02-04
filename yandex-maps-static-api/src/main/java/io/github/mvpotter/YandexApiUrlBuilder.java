@@ -11,6 +11,7 @@ import io.github.mvpotter.model.Size;
 import io.github.mvpotter.model.YandexMap;
 import io.github.mvpotter.model.polyline.Polygon;
 import io.github.mvpotter.model.polyline.Polyline;
+import io.github.mvpotter.utils.CoordinatesEncoder;
 
 import java.util.List;
 
@@ -194,7 +195,7 @@ public final class YandexApiUrlBuilder {
                     urlBuilder.append(COORDINATES_SEPARATOR).
                                append(renderPolylineWidth(polyline.getWidth())).
                                append(COORDINATES_SEPARATOR).
-                               append(renderCoordinatesList(polyline.getPoints())).
+                               append(CoordinatesEncoder.encode(polyline.getPoints())).
                                append(ENTITIES_SEPARATOR);
                 }
             }
@@ -231,24 +232,6 @@ public final class YandexApiUrlBuilder {
      */
     private static String renderPolylineWidth(final int width) {
         return WIDTH_KEY + COLON + width;
-    }
-
-    /**
-     * Returns string that represents list of coordinates.
-     *
-     * @param coordinates list of coordinates
-     * @return string that represents list of coordinates
-     */
-    private static String renderCoordinatesList(final List<Coordinate> coordinates) {
-        final StringBuilder stringBuilder = new StringBuilder();
-        if (coordinates != null && !coordinates.isEmpty()) {
-            for (Coordinate point: coordinates) {
-                stringBuilder.append(point.getLongitude()).append(COORDINATES_SEPARATOR).
-                              append(point.getLatitude()).append(COORDINATES_SEPARATOR);
-            }
-            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        }
-        return stringBuilder.toString();
     }
 
 }
