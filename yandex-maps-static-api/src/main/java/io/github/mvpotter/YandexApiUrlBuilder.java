@@ -105,9 +105,12 @@ public final class YandexApiUrlBuilder {
      */
     private static void addMapCenter(final YandexMap yandexMap, final StringBuilder urlBuilder) {
         final Coordinate center = yandexMap.getCenter();
+        if (center.equals(YandexMap.DEFAULT_CENTER) && !yandexMap.getPolylines().isEmpty()) {
+            return;
+        }
         urlBuilder.append(MAP_CENTER_KEY).append(EQUALS).
-                   append(center.getLongitude()).append(COORDINATES_SEPARATOR).
-                   append(center.getLatitude()).append(ARGUMENTS_SEPARATOR);
+                append(center.getLongitude()).append(COORDINATES_SEPARATOR).
+                append(center.getLatitude()).append(ARGUMENTS_SEPARATOR);
     }
 
     /**
@@ -119,12 +122,10 @@ public final class YandexApiUrlBuilder {
     private static void addViewport(final YandexMap yandexMap, final StringBuilder urlBuilder) {
         // add map viewport
         final Coordinate viewport = yandexMap.getViewport();
-        if (viewport != null
-            && !viewport.getLongitude().equals(YandexMap.DEFAULT_VIEWPORT_SIZE)
-            && !viewport.getLatitude().equals(YandexMap.DEFAULT_VIEWPORT_SIZE)) {
+        if (viewport != null && !viewport.equals(YandexMap.DEFAULT_VIEWPORT)) {
             urlBuilder.append(VIEWPORT_KEY).append(EQUALS).
-                    append(viewport.getLongitude()).append(COORDINATES_SEPARATOR).
-                    append(viewport.getLatitude()).append(ARGUMENTS_SEPARATOR);
+                       append(viewport.getLongitude()).append(COORDINATES_SEPARATOR).
+                       append(viewport.getLatitude()).append(ARGUMENTS_SEPARATOR);
         }
     }
 

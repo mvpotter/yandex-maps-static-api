@@ -10,7 +10,6 @@ package io.github.mvpotter.model;
 import io.github.mvpotter.model.marker.Marker;
 import io.github.mvpotter.model.polyline.Polyline;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,16 +20,15 @@ import java.util.Set;
  */
 public class YandexMap {
 
-    public static final BigDecimal DEFAULT_VIEWPORT_SIZE = new BigDecimal("0.01");
+    public static final Coordinate DEFAULT_CENTER = new Coordinate("83.098206", "54.851702");
+    public static final String VIEWPORT_SIZE = "0.01";
+    public static final Coordinate DEFAULT_VIEWPORT = new Coordinate(VIEWPORT_SIZE, VIEWPORT_SIZE);
     public static final int DEFAULT_SCALE = 10;
     public static final int MIN_SCALE = 0;
     public static final int MAX_SCALE = 17;
     public static final int MAX_WIDTH = 650;
     public static final int MAX_HEIGHT = 450;
     public static final int DEFAULT_SIZE = 450;
-
-    private static final String DEFAULT_LONGITUDE = "83.098206";
-    private static final String DEFAULT_LATITUDE = "54.851702";
 
     /**
      * YandexMap type.<br />
@@ -41,12 +39,12 @@ public class YandexMap {
      * YandexMap center coordinate in degrees.<br />
      * <b>Description:</b> http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_center.xml
      */
-    private Coordinate center = new Coordinate(DEFAULT_LONGITUDE, DEFAULT_LATITUDE);
+    private Coordinate center = DEFAULT_CENTER;
     /**
      * YandexMap viewport in degrees.<br />
      * <b>Description:</b> http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_viewport.xml
      */
-    private Coordinate viewport = new Coordinate(DEFAULT_VIEWPORT_SIZE, DEFAULT_VIEWPORT_SIZE);
+    private Coordinate viewport = DEFAULT_VIEWPORT;
     /**
      * YandexMap scale.<br />
      * <b>Description:</b> http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_scale.xml

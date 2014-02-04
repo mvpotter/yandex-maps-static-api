@@ -13,6 +13,8 @@ import java.math.BigDecimal;
  */
 public class Coordinate implements Cloneable {
 
+    private static final int HASHCODE_MULTIPLIER = 31;
+
     /**
      * Longitude.
      */
@@ -101,6 +103,34 @@ public class Coordinate implements Cloneable {
     @Override
     public String toString() {
         return String.format("(%f, %f)", longitude, latitude);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        final Coordinate that = (Coordinate) o;
+
+        if (latitude != null ? !latitude.equals(that.latitude) : that.latitude != null) {
+            return false;
+        }
+        if (longitude != null ? !longitude.equals(that.longitude) : that.longitude != null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = longitude != null ? longitude.hashCode() : 0;
+        result = HASHCODE_MULTIPLIER * result + (latitude != null ? latitude.hashCode() : 0);
+        return result;
     }
 
 }
