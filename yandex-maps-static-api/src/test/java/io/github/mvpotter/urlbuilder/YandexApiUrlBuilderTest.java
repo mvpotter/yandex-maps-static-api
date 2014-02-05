@@ -66,12 +66,6 @@ public class YandexApiUrlBuilderTest {
     }
 
     @Test
-    public void test() {
-        YandexMap yandexMap = new YandexMap();
-        System.out.println(yandexApiUrlBuilder.build(yandexMap));
-    }
-
-    @Test
     public void basicTestBuild() {
         YandexMap yandexMap = new YandexMap();
         Assert.assertEquals(DEFAULT_API_URL, yandexApiUrlBuilder.build(yandexMap));
