@@ -30,7 +30,9 @@
 		<module name="ArrayTypeStyle"/>
 		<module name="AvoidNestedBlocks"/>
 		<module name="BooleanExpressionComplexity"/>
-		<module name="ClassDataAbstractionCoupling"/>
+		<module name="ClassDataAbstractionCoupling">
+            <property name="max" value="15" />
+        </module>
 		<module name="ClassFanOutComplexity"/>
 		<module name="ClassTypeParameterName">
 			<property name="format" value="^[A-Z]*$"/>

@@ -4,7 +4,7 @@
  * Date: 31/01/14
  * Time: 23:03
  */
-package io.github.mvpotter;
+package io.github.mvpotter.urlbuilder;
 
 import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.Size;
@@ -15,6 +15,7 @@ import io.github.mvpotter.model.marker.Type;
 import io.github.mvpotter.model.polyline.Curve;
 import io.github.mvpotter.model.polyline.Polygon;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -57,38 +58,51 @@ public class YandexApiUrlBuilderTest {
                                                     + "37.2,37.2,pmgnl100~37.3,37,vkgrm~37,37.2,pm2orgl~37,37.1,pma~"
                                                     + "37.1,37.1,pmb~37.2,37,vkbkm";
 
+    private YandexApiUrlBuilder yandexApiUrlBuilder;
+
+    @Before
+    public void before() {
+        yandexApiUrlBuilder = new YandexApiUrlBuilder();
+    }
+
+    @Test
+    public void test() {
+        YandexMap yandexMap = new YandexMap();
+        System.out.println(yandexApiUrlBuilder.build(yandexMap));
+    }
+
     @Test
     public void basicTestBuild() {
         YandexMap yandexMap = new YandexMap();
-        Assert.assertEquals(DEFAULT_API_URL, YandexApiUrlBuilder.build(yandexMap));
+        Assert.assertEquals(DEFAULT_API_URL, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
     public void testBuildWithApiKey() {
         YandexMap yandexMap = new YandexMap();
         yandexMap.setApiKey(API_KEY);
-        Assert.assertEquals(API_URL_WITH_API_KEY, YandexApiUrlBuilder.build(yandexMap));
+        Assert.assertEquals(API_URL_WITH_API_KEY, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
     public void testBuildWithViewport() {
         YandexMap yandexMap = new YandexMap();
         yandexMap.setViewport(new Coordinate(VIEWPORT_LONGITUDE, VIEWPORT_LATITUDE));
-        Assert.assertEquals(API_URL_WITH_VIEWPORT, YandexApiUrlBuilder.build(yandexMap));
+        Assert.assertEquals(API_URL_WITH_VIEWPORT, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
     public void testBuildWithScale() {
         YandexMap yandexMap = new YandexMap();
         yandexMap.setScale(SCALE);
-        Assert.assertEquals(API_URL_WITH_SCALE, YandexApiUrlBuilder.build(yandexMap));
+        Assert.assertEquals(API_URL_WITH_SCALE, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
     public void testBuildWithSize() {
         YandexMap yandexMap = new YandexMap();
         yandexMap.setSize(new Size(WIDTH, HEIGHT));
-        Assert.assertEquals(API_URL_WITH_SIZE, YandexApiUrlBuilder.build(yandexMap));
+        Assert.assertEquals(API_URL_WITH_SIZE, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
@@ -111,7 +125,7 @@ public class YandexApiUrlBuilderTest {
         curve.addPoint(new Coordinate("37.662398", "55.745281"));
         yandexMap.addPolyline(curve);
 
-        Assert.assertEquals(API_URL_WITH_CURVES, YandexApiUrlBuilder.build(yandexMap));
+        Assert.assertEquals(API_URL_WITH_CURVES, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
@@ -133,7 +147,7 @@ public class YandexApiUrlBuilderTest {
         polygon.addPoint(new Coordinate("37.660286", "55.743301"));
         yandexMap.addPolyline(polygon);
 
-        Assert.assertEquals(API_URL_WITH_POLYGONS, YandexApiUrlBuilder.build(yandexMap));
+        Assert.assertEquals(API_URL_WITH_POLYGONS, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
@@ -148,15 +162,15 @@ public class YandexApiUrlBuilderTest {
         yandexMap.addMarker(new Marker(new Coordinate("37.2", "37.1"), Style.ROUND, Type.B));
         yandexMap.addMarker(new Marker(new Coordinate("37.3", "37.1"), Style.ROUND, Type.EMPTY_BLUE_WITH_YELLOW));
         yandexMap.addMarker(new Marker(new Coordinate("37.", "37.2"), Style.ROUND, Type.EMPTY_BLUE,
-                                       io.github.mvpotter.model.marker.Size.LARGE));
+                io.github.mvpotter.model.marker.Size.LARGE));
         yandexMap.addMarker(new Marker(new Coordinate("37.1", "37.2"), Style.ROUND, Type.DARK_GREEN,
-                                       io.github.mvpotter.model.marker.Size.LARGE, 90));
+                io.github.mvpotter.model.marker.Size.LARGE, 90));
         yandexMap.addMarker(new Marker(new Coordinate("37.2", "37.2"), Style.SQUARE, Type.GREEN,
-                                       io.github.mvpotter.model.marker.Size.LARGE, 100));
+                io.github.mvpotter.model.marker.Size.LARGE, 100));
         yandexMap.addMarker(new Marker(new Coordinate("37.3", "37.2"), Style.SQUARE, Type.BLUE,
-                            io.github.mvpotter.model.marker.Size.MEDIUM, 15));
+                io.github.mvpotter.model.marker.Size.MEDIUM, 15));
 
-        Assert.assertEquals(API_URL_WITH_MARKERS, YandexApiUrlBuilder.build(yandexMap));
+        Assert.assertEquals(API_URL_WITH_MARKERS, yandexApiUrlBuilder.build(yandexMap));
     }
 
 }
