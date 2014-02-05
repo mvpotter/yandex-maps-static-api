@@ -16,6 +16,7 @@ Done
   - Curves
   - Polygons
   - Coordinates encoding
+- Support for [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
 
 Usage
 -----
@@ -40,6 +41,7 @@ curve.addPoint(new Coordinate("37.655131", "55.741814"));
 curve.addPoint(new Coordinate("37.658257", "55.742524"));
 yandexMap.addPolyline(curve);
 
+// Add polygon (multiple if necessary)
 Polygon polygon = new Polygon();
 polygon.setColor(Color.WHITE);
 polygon.addPoint(new Coordinate("37.660286", "55.743301"));
@@ -48,10 +50,19 @@ polygon.addPoint(new Coordinate("37.662947", "55.743108"));
 polygon.addPoint(new Coordinate("37.660286", "55.743301"));
 yandexMap.addPolyline(polygon);
 
+// Add markers
+yandexMap.addMarker(new Marker(new Coordinate("37.656577", "55.741176")));
+yandexMap.addMarker(new Marker(new Coordinate("37.656748", "55.741419"), Style.FLAG));
+yandexMap.addMarker(new Marker(new Coordinate("37.655131", "55.741814"), Style.PIN, Type.BLACK));
+yandexMap.addMarker(new Marker(new Coordinate("37.658257", "55.742524"), Style.PIN, Type.GRAY));
+yandexMap.addMarker(new Marker(new Coordinate("37.660286", "55.743301"), Style.SQUARE, Type.A));
+yandexMap.addMarker(new Marker(new Coordinate("37.661831", "55.745165"), Style.SQUARE, Type.B));
+yandexMap.addMarker(new Marker(new Coordinate("37.662947", "55.743108"), Style.ROUND, Type.B));
+
 // Use YandexApiUrlBuilder to generate appropriate URL for using in a browser or web component
-String url = YandexApiUrlBuilder.build(yandexMap);
+YandexApiUrlBuilder yandexApiUrlBuilder = new YandexApiUrlBuilder();
+String url = yandexApiUrlBuilder.build(yandexMap);
 ```
 Further plans
 -----
-- Support for [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
-- Support for [Geocoding](http://api.yandex.ru/maps/doc/geocoder/desc/concepts/About.xml)
+- Refactoring and bugfixing
