@@ -6,8 +6,6 @@
  */
 package io.github.mvpotter.model.polyline;
 
-import io.github.mvpotter.utils.ColorUtils;
-
 import java.awt.*;
 
 /**
@@ -16,7 +14,7 @@ import java.awt.*;
  */
 public class Polygon extends Polyline {
 
-    private static final Color DEFAULT_FILLING_COLLOR = ColorUtils.toColor("00FF00A0");
+    private static final Color DEFAULT_FILLING_COLLOR = new Color(0, 255, 0, 160);
 
     private Color fillingColor = DEFAULT_FILLING_COLLOR;
 
@@ -27,15 +25,6 @@ public class Polygon extends Polyline {
      */
     public Color getFillingColor() {
         return fillingColor;
-    }
-
-    /**
-     * Returns polygon filling color in HEX representation.
-     *
-     * @return color in HEX representation
-     */
-    public String getHexFillingColor() {
-        return ColorUtils.toHexColor(fillingColor);
     }
 
     /**

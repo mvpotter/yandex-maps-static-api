@@ -7,7 +7,6 @@
 package io.github.mvpotter.model.polyline;
 
 import io.github.mvpotter.model.Coordinate;
-import io.github.mvpotter.utils.ColorUtils;
 
 import java.awt.*;
 import java.util.Collections;
@@ -20,7 +19,7 @@ import java.util.List;
  */
 public class Polyline {
 
-    private static final Color DEFAULT_COLOR = ColorUtils.toColor("8822DDC0");
+    private static final Color DEFAULT_COLOR = new Color(136, 34, 221, 192);
     private static final int DEFAULT_WIDTH = 5;
 
     protected Color color = DEFAULT_COLOR;
@@ -68,15 +67,6 @@ public class Polyline {
      */
     public Color getColor() {
         return color;
-    }
-
-    /**
-     * Returns polyline color in HEX representation.
-     *
-     * @return color in HEX representation
-     */
-    public String getHexColor() {
-        return ColorUtils.toHexColor(color);
     }
 
     /**

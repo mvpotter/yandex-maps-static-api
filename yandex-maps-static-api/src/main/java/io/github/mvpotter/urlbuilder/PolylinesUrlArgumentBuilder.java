@@ -10,6 +10,7 @@ import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.YandexMap;
 import io.github.mvpotter.model.polyline.Polygon;
 import io.github.mvpotter.model.polyline.Polyline;
+import io.github.mvpotter.utils.ColorUtils;
 import io.github.mvpotter.utils.CoordinatesEncoder;
 
 import java.util.List;
@@ -34,10 +35,11 @@ public class PolylinesUrlArgumentBuilder extends AbstractUrlArgumentBuilder {
             for (Polyline polyline : yandexMap.getPolylines()) {
                 final List<Coordinate> points = polyline.getPoints();
                 if (!points.isEmpty()) {
-                    urlBuilder.append(renderPolylineColor(polyline.getHexColor()));
+                    urlBuilder.append(renderPolylineColor(ColorUtils.toHexColor(polyline.getColor())));
                     if (polyline instanceof Polygon) {
+                        final Polygon polygon = (Polygon) polyline;
                         urlBuilder.append(COORDINATES_SEPARATOR).
-                                append(renderPolygonFillingColor(((Polygon) polyline).getHexFillingColor()));
+                                append(renderPolygonFillingColor(ColorUtils.toHexColor(polygon.getFillingColor())));
                     }
                     urlBuilder.append(COORDINATES_SEPARATOR).
                             append(renderPolylineWidth(polyline.getWidth())).

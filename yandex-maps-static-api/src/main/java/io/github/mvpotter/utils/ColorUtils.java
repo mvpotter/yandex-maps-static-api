@@ -6,7 +6,7 @@
  */
 package io.github.mvpotter.utils;
 
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * Utils class for processing color.
