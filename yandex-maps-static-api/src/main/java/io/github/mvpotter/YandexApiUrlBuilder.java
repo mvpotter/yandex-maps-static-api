@@ -11,6 +11,7 @@ import io.github.mvpotter.model.Size;
 import io.github.mvpotter.model.YandexMap;
 import io.github.mvpotter.model.marker.FlagMarker;
 import io.github.mvpotter.model.marker.Marker;
+import io.github.mvpotter.model.marker.PinMarker;
 import io.github.mvpotter.model.polyline.Polygon;
 import io.github.mvpotter.model.polyline.Polyline;
 import io.github.mvpotter.utils.CoordinatesEncoder;
@@ -45,7 +46,8 @@ public final class YandexApiUrlBuilder {
     private static final String ENTITIES_SEPARATOR = "~";
     private static final String COLON = ":";
 
-    public static final String FLAG_MARKER_CODE = "flag";
+    private static final String FLAG_MARKER_CODE = "flag";
+    private static final String PIN_MARKER_CODE = "vk";
 
     /**
      * Creates YandexApiUrlBuilder.
@@ -229,6 +231,8 @@ public final class YandexApiUrlBuilder {
                            append(COORDINATES_SEPARATOR);
                 if (marker instanceof FlagMarker) {
                     urlBuilder.append(FLAG_MARKER_CODE);
+                } else if (marker instanceof PinMarker) {
+                    urlBuilder.append(PIN_MARKER_CODE).append(((PinMarker) marker).getType().getCode());
                 }
                 urlBuilder.append(ENTITIES_SEPARATOR);
             }

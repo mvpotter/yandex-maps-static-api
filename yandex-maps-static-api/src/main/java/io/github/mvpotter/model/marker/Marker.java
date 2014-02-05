@@ -26,6 +26,6 @@ public interface Marker {
      *
      * @return marker location
      */
-    public Coordinate getLocation();
+    Coordinate getLocation();
 
 }

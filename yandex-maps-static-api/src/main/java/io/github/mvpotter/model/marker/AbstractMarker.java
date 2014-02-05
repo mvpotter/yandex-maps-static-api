@@ -12,7 +12,7 @@ import io.github.mvpotter.model.Coordinate;
  * YandexMap marker.<br />
  * <b>Description: </b> http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml
  */
-public abstract class AbstractMarker implements Marker{
+public abstract class AbstractMarker implements Marker {
 
     private Coordinate location;
 
@@ -21,7 +21,7 @@ public abstract class AbstractMarker implements Marker{
      *
      * @param location marker location on map
      */
-    protected AbstractMarker(Coordinate location) {
+    protected AbstractMarker(final Coordinate location) {
         this.location = location;
     }
 
@@ -31,7 +31,7 @@ public abstract class AbstractMarker implements Marker{
      * @param location marker location
      */
     @Override
-    public void setLocation(Coordinate location) {
+    public void setLocation(final Coordinate location) {
         this.location = location;
     }
 
@@ -46,7 +46,7 @@ public abstract class AbstractMarker implements Marker{
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
@@ -54,8 +54,8 @@ public abstract class AbstractMarker implements Marker{
             return false;
         }
 
-        AbstractMarker that = (AbstractMarker) o;
-        if (location != null ? !location.equals(that.location) : that.location != null) {
+        final Marker that = (Marker) o;
+        if (location != null ? !location.equals(that.getLocation()) : that.getLocation() != null) {
             return false;
         }
 

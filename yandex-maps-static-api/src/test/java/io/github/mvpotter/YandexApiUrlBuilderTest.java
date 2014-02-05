@@ -10,6 +10,7 @@ import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.Size;
 import io.github.mvpotter.model.YandexMap;
 import io.github.mvpotter.model.marker.FlagMarker;
+import io.github.mvpotter.model.marker.PinMarker;
 import io.github.mvpotter.model.polyline.Curve;
 import io.github.mvpotter.model.polyline.Polygon;
 import org.junit.Assert;
@@ -50,7 +51,7 @@ public class YandexApiUrlBuilderTest {
                                                       + "wEAAD39___m_X__8EAAAA=";
     // Markers
     public static final String API_URL_WITH_MARKERS = "http://static-maps.yandex.ru/1.x/?l=map&lang=en-US&"
-                                                    + "pt=37,37,flag~38,38,flag";
+                                                    + "pt=37,37,flag~37.2,37.2,vkgrm~37.1,37.1,vkbkm";
 
     @Test
     public void basicTestBuild() {
@@ -135,7 +136,8 @@ public class YandexApiUrlBuilderTest {
     public void testMarkers() {
         YandexMap yandexMap = new YandexMap();
         yandexMap.addMarker(new FlagMarker(new Coordinate("37", "37")));
-        yandexMap.addMarker(new FlagMarker(new Coordinate("38", "38")));
+        yandexMap.addMarker(new PinMarker(new Coordinate("37.1", "37.1"), PinMarker.Type.BLACK));
+        yandexMap.addMarker(new PinMarker(new Coordinate("37.2", "37.2"), PinMarker.Type.GRAY));
 
         Assert.assertEquals(API_URL_WITH_MARKERS, YandexApiUrlBuilder.build(yandexMap));
     }

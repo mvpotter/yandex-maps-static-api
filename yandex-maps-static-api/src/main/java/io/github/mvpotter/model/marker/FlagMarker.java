@@ -19,7 +19,7 @@ public class FlagMarker extends AbstractMarker {
      *
      * @param location marker location on map
      */
-    public FlagMarker(Coordinate location) {
+    public FlagMarker(final Coordinate location) {
         super(location);
     }
 
