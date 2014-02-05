@@ -11,6 +11,7 @@ import io.github.mvpotter.model.Size;
 import io.github.mvpotter.model.YandexMap;
 import io.github.mvpotter.model.marker.FlagMarker;
 import io.github.mvpotter.model.marker.PinMarker;
+import io.github.mvpotter.model.marker.square.SquareMarkerWithContent;
 import io.github.mvpotter.model.polyline.Curve;
 import io.github.mvpotter.model.polyline.Polygon;
 import org.junit.Assert;
@@ -51,7 +52,8 @@ public class YandexApiUrlBuilderTest {
                                                       + "wEAAD39___m_X__8EAAAA=";
     // Markers
     public static final String API_URL_WITH_MARKERS = "http://static-maps.yandex.ru/1.x/?l=map&lang=en-US&"
-                                                    + "pt=37,37,flag~37.2,37.2,vkgrm~37.1,37.1,vkbkm";
+                                                    + "pt=37,37,flag~37.2,37.2,vkgrm~37.4,37.4,pmpnl100~"
+                                                    + "37.1,37.1,vkbkm~37.3,37.3,pmblm50";
 
     @Test
     public void basicTestBuild() {
@@ -138,6 +140,14 @@ public class YandexApiUrlBuilderTest {
         yandexMap.addMarker(new FlagMarker(new Coordinate("37", "37")));
         yandexMap.addMarker(new PinMarker(new Coordinate("37.1", "37.1"), PinMarker.Type.BLACK));
         yandexMap.addMarker(new PinMarker(new Coordinate("37.2", "37.2"), PinMarker.Type.GRAY));
+        yandexMap.addMarker(new SquareMarkerWithContent(new Coordinate("37.3", "37.3"),
+                                                        SquareMarkerWithContent.Type.BLUE,
+                                                        SquareMarkerWithContent.Size.MEDIUM,
+                                                        50));
+        yandexMap.addMarker(new SquareMarkerWithContent(new Coordinate("37.4", "37.4"),
+                                                        SquareMarkerWithContent.Type.PINK,
+                                                        SquareMarkerWithContent.Size.LARGE,
+                                                        100));
 
         Assert.assertEquals(API_URL_WITH_MARKERS, YandexApiUrlBuilder.build(yandexMap));
     }
