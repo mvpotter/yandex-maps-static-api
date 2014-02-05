@@ -9,11 +9,14 @@ package io.github.mvpotter;
 import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.Size;
 import io.github.mvpotter.model.YandexMap;
+import io.github.mvpotter.model.marker.FlagMarker;
+import io.github.mvpotter.model.marker.Marker;
 import io.github.mvpotter.model.polyline.Polygon;
 import io.github.mvpotter.model.polyline.Polyline;
 import io.github.mvpotter.utils.CoordinatesEncoder;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Builds Yandex API URL for further displaying on web components.
@@ -34,12 +37,15 @@ public final class YandexApiUrlBuilder {
     private static final String SIZE_KEY = "size";
     private static final String LANGUAGE_KEY = "lang";
     private static final String POLYLINE_KEY = "pl";
+    private static final String MARKER_KEY = "pt";
 
     private static final String COLOR_KEY = "c";
     private static final String FILLING_COLOR_KEY = "f";
     private static final String WIDTH_KEY = "w";
     private static final String ENTITIES_SEPARATOR = "~";
     private static final String COLON = ":";
+
+    public static final String FLAG_MARKER_CODE = "flag";
 
     /**
      * Creates YandexApiUrlBuilder.
@@ -68,6 +74,7 @@ public final class YandexApiUrlBuilder {
         addViewport(yandexMap, urlBuilder);
         addScale(yandexMap, urlBuilder);
         addSize(yandexMap, urlBuilder);
+        addMarkers(yandexMap, urlBuilder);
         addPolylines(yandexMap, urlBuilder);
 
         urlBuilder.deleteCharAt(urlBuilder.length() - 1);
@@ -106,7 +113,8 @@ public final class YandexApiUrlBuilder {
      */
     private static void addMapCenter(final YandexMap yandexMap, final StringBuilder urlBuilder) {
         final Coordinate center = yandexMap.getCenter();
-        if (center.equals(YandexMap.DEFAULT_CENTER) && !yandexMap.getPolylines().isEmpty()) {
+        if (center.equals(YandexMap.DEFAULT_CENTER)
+            && (!yandexMap.getPolylines().isEmpty() || !yandexMap.getMarkers().isEmpty())) {
             return;
         }
         urlBuilder.append(MAP_CENTER_KEY).append(EQUALS).
@@ -202,6 +210,31 @@ public final class YandexApiUrlBuilder {
             urlBuilder.deleteCharAt(urlBuilder.length() - 1);
             urlBuilder.append(ARGUMENTS_SEPARATOR);
         }
+    }
+
+    /**
+     * Adds markers to map.
+     *
+     * @param yandexMap yandex map
+     * @param urlBuilder api url builder
+     */
+    private static void addMarkers(final YandexMap yandexMap, final StringBuilder urlBuilder) {
+        final Set<Marker> markers = yandexMap.getMarkers();
+        if (!markers.isEmpty()) {
+            urlBuilder.append(MARKER_KEY).append(EQUALS);
+            for (Marker marker: markers) {
+                urlBuilder.append(marker.getLocation().getLongitude()).
+                           append(COORDINATES_SEPARATOR).
+                           append(marker.getLocation().getLatitude()).
+                           append(COORDINATES_SEPARATOR);
+                if (marker instanceof FlagMarker) {
+                    urlBuilder.append(FLAG_MARKER_CODE);
+                }
+                urlBuilder.append(ENTITIES_SEPARATOR);
+            }
+        }
+        urlBuilder.deleteCharAt(urlBuilder.length() - 1);
+        urlBuilder.append(ARGUMENTS_SEPARATOR);
     }
 
     /**

@@ -9,6 +9,7 @@ package io.github.mvpotter;
 import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.Size;
 import io.github.mvpotter.model.YandexMap;
+import io.github.mvpotter.model.marker.FlagMarker;
 import io.github.mvpotter.model.polyline.Curve;
 import io.github.mvpotter.model.polyline.Polygon;
 import org.junit.Assert;
@@ -47,6 +48,9 @@ public class YandexApiUrlBuilderTest {
                                                       + "pl=c:000000ff,f:00ff00a0,w:5,gZg-AqSKUgOu8___DwUAAA4oAACLBwAA"
                                                       + "ROT__2bz__8=~c:ffffffff,f:00ff00a0,w:5,fqY-AkWTUgMJBgAASAcAAF"
                                                       + "wEAAD39___m_X__8EAAAA=";
+    // Markers
+    public static final String API_URL_WITH_MARKERS = "http://static-maps.yandex.ru/1.x/?l=map&lang=en-US&"
+                                                    + "pt=37,37,flag~38,38,flag";
 
     @Test
     public void basicTestBuild() {
@@ -125,6 +129,15 @@ public class YandexApiUrlBuilderTest {
         yandexMap.addPolyline(polygon);
 
         Assert.assertEquals(API_URL_WITH_POLYGONS, YandexApiUrlBuilder.build(yandexMap));
+    }
+
+    @Test
+    public void testMarkers() {
+        YandexMap yandexMap = new YandexMap();
+        yandexMap.addMarker(new FlagMarker(new Coordinate("37", "37")));
+        yandexMap.addMarker(new FlagMarker(new Coordinate("38", "38")));
+
+        Assert.assertEquals(API_URL_WITH_MARKERS, YandexApiUrlBuilder.build(yandexMap));
     }
 
 }

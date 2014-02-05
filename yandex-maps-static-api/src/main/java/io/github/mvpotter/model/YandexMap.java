@@ -10,6 +10,7 @@ package io.github.mvpotter.model;
 import io.github.mvpotter.model.marker.Marker;
 import io.github.mvpotter.model.polyline.Polyline;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -215,16 +216,16 @@ public class YandexMap {
      * @return markers
      */
     public Set<Marker> getMarkers() {
-        return markers;
+        return Collections.unmodifiableSet(markers);
     }
 
     /**
-     * Sets map markers.
+     * Adds marker to map.
      *
-     * @param markers map markers.
+     * @param marker marker
      */
-    public void setMarkers(final Set<Marker> markers) {
-        this.markers = markers;
+    public void addMarker(final Marker marker) {
+        this.markers.add(marker);
     }
 
     /**

@@ -1,10 +1,12 @@
 /*
  * Created with IntelliJ IDEA.
- * User: michaelpotter
- * Date: 31/01/14
- * Time: 21:17
+ * User: mpotter
+ * Date: 05.02.14
+ * Time: 12:38
  */
 package io.github.mvpotter.model.marker;
+
+import io.github.mvpotter.model.Coordinate;
 
 /**
  * YandexMap marker.<br />
@@ -13,10 +15,17 @@ package io.github.mvpotter.model.marker;
 public interface Marker {
 
     /**
-     * Returns marker's code in accordance with its style.
+     * Sets marker location on map.
      *
-     * @return marker's code
+     * @param location marker location
      */
-    String getCode();
+    void setLocation(Coordinate location);
+
+    /**
+     * Returns marker location on map.
+     *
+     * @return marker location
+     */
+    public Coordinate getLocation();
 
 }
