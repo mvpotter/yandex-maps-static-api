@@ -9,11 +9,7 @@ package io.github.mvpotter;
 import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.Size;
 import io.github.mvpotter.model.YandexMap;
-import io.github.mvpotter.model.marker.FlagMarker;
 import io.github.mvpotter.model.marker.Marker;
-import io.github.mvpotter.model.marker.PinMarker;
-import io.github.mvpotter.model.marker.square.SquareMarker;
-import io.github.mvpotter.model.marker.square.SquareMarkerWithContent;
 import io.github.mvpotter.model.polyline.Polygon;
 import io.github.mvpotter.model.polyline.Polyline;
 import io.github.mvpotter.utils.CoordinatesEncoder;
@@ -47,10 +43,6 @@ public final class YandexApiUrlBuilder {
     private static final String WIDTH_KEY = "w";
     private static final String ENTITIES_SEPARATOR = "~";
     private static final String COLON = ":";
-
-    private static final String FLAG_MARKER_CODE = "flag";
-    private static final String PIN_MARKER_CODE = "vk";
-    private static final String SQUARE_MARKER_CODE = "pm";
 
     /**
      * Creates YandexApiUrlBuilder.
@@ -231,19 +223,16 @@ public final class YandexApiUrlBuilder {
                 urlBuilder.append(marker.getLocation().getLongitude()).
                            append(COORDINATES_SEPARATOR).
                            append(marker.getLocation().getLatitude()).
-                           append(COORDINATES_SEPARATOR);
-                if (marker instanceof FlagMarker) {
-                    urlBuilder.append(FLAG_MARKER_CODE);
-                } else if (marker instanceof PinMarker) {
-                    urlBuilder.append(PIN_MARKER_CODE).append(((PinMarker) marker).getType().getCode());
-                } else if (marker instanceof SquareMarker) {
-                    urlBuilder.append(SQUARE_MARKER_CODE);
-                    if (marker instanceof SquareMarkerWithContent) {
-                        final SquareMarkerWithContent squareMarker = (SquareMarkerWithContent) marker;
-                        urlBuilder.append(squareMarker.getType().getCode());
-                        urlBuilder.append(squareMarker.getSize().getCode());
-                        urlBuilder.append(squareMarker.getContent());
-                    }
+                           append(COORDINATES_SEPARATOR).
+                           append(marker.getStyle().getCode());
+                if (marker.getType() != null) {
+                    urlBuilder.append(marker.getType().getCode());
+                }
+                if (marker.getSize() != null) {
+                    urlBuilder.append(marker.getSize().getCode());
+                }
+                if (marker.getContent() != null) {
+                    urlBuilder.append(marker.getContent());
                 }
                 urlBuilder.append(ENTITIES_SEPARATOR);
             }
