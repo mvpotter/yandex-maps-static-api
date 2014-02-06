@@ -14,10 +14,16 @@ import io.github.mvpotter.model.YandexMap;
 public class MapTypeUrlArgumentBuilder extends AbstractUrlArgumentBuilder {
 
     private static final String MAP_TYPE_KEY = "l";
+    private static final String MAP_TYPES_SEPARATOR = ",";
 
     @Override
     protected String buildUrlArgument(final YandexMap yandexMap) {
-        return MAP_TYPE_KEY + EQUALS + yandexMap.getMapType().getCode();
+        StringBuilder mapTypesBuilder = new StringBuilder(MAP_TYPE_KEY + EQUALS);
+        for (YandexMap.MapType mapType: yandexMap.getMapTypes()) {
+            mapTypesBuilder.append(mapType.getCode()).append(MAP_TYPES_SEPARATOR);
+        }
+        mapTypesBuilder.deleteCharAt(mapTypesBuilder.length() - 1);
+        return  mapTypesBuilder.toString();
     }
 
 }

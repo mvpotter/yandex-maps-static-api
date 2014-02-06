@@ -12,6 +12,7 @@ import io.github.mvpotter.model.polyline.Polyline;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -35,7 +36,7 @@ public class YandexMap {
      * YandexMap type.<br />
      * <b>Description:</b> http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_type.xml
      */
-    private MapType mapType = MapType.MAP;
+    private Set<MapType> mapTypes = new LinkedHashSet<MapType>();
     /**
      * YandexMap center coordinate in degrees.<br />
      * <b>Description:</b> http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_center.xml
@@ -82,7 +83,7 @@ public class YandexMap {
      * Creates Yandex Map object.
      */
     public YandexMap() {
-
+        setMapType(MapType.MAP);
     }
 
     /**
@@ -92,8 +93,8 @@ public class YandexMap {
      * @param center map center
      */
     public YandexMap(final MapType mapType, final Coordinate center) {
-        this.mapType = mapType;
-        this.center = center;
+        setMapType(mapType);
+        setCenter(center);
     }
 
     /**
@@ -105,7 +106,7 @@ public class YandexMap {
      */
     public YandexMap(final String apiKey, final MapType mapType, final Coordinate center) {
         this(mapType, center);
-        this.apiKey = apiKey;
+        setApiKey(apiKey);
     }
 
     /**
@@ -113,8 +114,8 @@ public class YandexMap {
      *
      * @return map type
      */
-    public MapType getMapType() {
-        return mapType;
+    public Set<MapType> getMapTypes() {
+        return Collections.unmodifiableSet(mapTypes);
     }
 
     /**
@@ -123,7 +124,18 @@ public class YandexMap {
      * @param mapType map type.
      */
     public void setMapType(final MapType mapType) {
-        this.mapType = mapType;
+        mapTypes.clear();
+        this.mapTypes.add(mapType);
+    }
+
+    /**
+     * Sets complex map type.
+     *
+     * @param mapTypes map types.
+     */
+    public void setMapType(final MapType... mapTypes) {
+        this.mapTypes.clear();
+        Collections.addAll(this.mapTypes, mapTypes);
     }
 
     /**
@@ -234,7 +246,7 @@ public class YandexMap {
      * @return list of polylines
      */
     public List<Polyline> getPolylines() {
-        return polylines;
+        return Collections.unmodifiableList(polylines);
     }
 
     /**
