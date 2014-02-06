@@ -26,10 +26,6 @@ public class YandexMap {
     public static final String VIEWPORT_SIZE = "0.01";
     public static final Coordinate DEFAULT_VIEWPORT = new Coordinate(VIEWPORT_SIZE, VIEWPORT_SIZE);
     public static final int DEFAULT_SCALE = 10;
-    public static final int MIN_SCALE = 0;
-    public static final int MAX_SCALE = 17;
-    public static final int MAX_WIDTH = 650;
-    public static final int MAX_HEIGHT = 450;
     public static final int DEFAULT_SIZE = 450;
 
     /**
@@ -189,13 +185,7 @@ public class YandexMap {
      * @param scale map scale.
      */
     public void setScale(final int scale) {
-        if (scale < MIN_SCALE) {
-            this.scale = MIN_SCALE;
-        } else if (scale > MAX_SCALE) {
-            this.scale = MAX_SCALE;
-        } else {
-            this.scale = scale;
-        }
+        this.scale = scale;
     }
 
     /**
@@ -214,12 +204,6 @@ public class YandexMap {
      */
     public void setSize(final Size size) {
         this.size = size;
-        if (this.size.getWidth() > MAX_WIDTH) {
-            this.size.setWidth(MAX_WIDTH);
-        }
-        if (this.size.getHeight() > MAX_HEIGHT) {
-            this.size.setHeight(MAX_HEIGHT);
-        }
     }
 
     /**

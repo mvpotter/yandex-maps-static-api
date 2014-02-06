@@ -13,12 +13,19 @@ import io.github.mvpotter.model.YandexMap;
  */
 public class MapScaleUrlArgumentBuilder extends AbstractUrlArgumentBuilder {
 
+    public static final int MIN_SCALE = 0;
+    public static final int MAX_SCALE = 17;
     private static final String SCALE_KEY = "z";
 
     @Override
     protected String buildUrlArgument(final YandexMap yandexMap) {
-        final int scale = yandexMap.getScale();
+        int scale = yandexMap.getScale();
         if (scale != YandexMap.DEFAULT_SCALE) {
+            if (scale < MIN_SCALE) {
+                scale = MIN_SCALE;
+            } else if (scale > MAX_SCALE) {
+                scale = MAX_SCALE;
+            }
             return SCALE_KEY + EQUALS + scale;
         }
 

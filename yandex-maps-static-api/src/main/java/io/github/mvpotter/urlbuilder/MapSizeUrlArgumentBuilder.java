@@ -14,6 +14,8 @@ import io.github.mvpotter.model.YandexMap;
  */
 public class MapSizeUrlArgumentBuilder extends AbstractUrlArgumentBuilder {
 
+    public static final int MAX_WIDTH = 650;
+    public static final int MAX_HEIGHT = 450;
     private static final String SIZE_KEY = "size";
 
     @Override
@@ -22,7 +24,15 @@ public class MapSizeUrlArgumentBuilder extends AbstractUrlArgumentBuilder {
         if (size != null
             && size.getWidth() != YandexMap.DEFAULT_SIZE
             && size.getHeight() != YandexMap.DEFAULT_SIZE) {
-            return SIZE_KEY + EQUALS + size.getWidth() + COORDINATES_SEPARATOR + size.getHeight();
+            int width = size.getWidth();
+            int height = size.getHeight();
+            if (width > MAX_WIDTH) {
+                width = MAX_WIDTH;
+            }
+            if (height > MAX_HEIGHT) {
+                height = MAX_HEIGHT;
+            }
+            return SIZE_KEY + EQUALS + width + COORDINATES_SEPARATOR + height;
         }
 
         return null;
