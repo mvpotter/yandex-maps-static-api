@@ -14,28 +14,44 @@ import io.github.mvpotter.model.YandexMap;
  */
 public class MapSizeUrlArgumentBuilder extends AbstractUrlArgumentBuilder {
 
+    public static final int MIN_WIDTH = 1;
     public static final int MAX_WIDTH = 650;
+
+    public static final int MIN_HEIGHT = 1;
     public static final int MAX_HEIGHT = 450;
-    private static final String SIZE_KEY = "size";
+
+    public static final String SIZE_KEY = "size";
 
     @Override
     protected String buildUrlArgument(final YandexMap yandexMap) {
         final Size size = yandexMap.getSize();
-        if (size != null
-            && size.getWidth() != YandexMap.DEFAULT_SIZE
-            && size.getHeight() != YandexMap.DEFAULT_SIZE) {
-            int width = size.getWidth();
-            int height = size.getHeight();
-            if (width > MAX_WIDTH) {
-                width = MAX_WIDTH;
-            }
-            if (height > MAX_HEIGHT) {
-                height = MAX_HEIGHT;
-            }
+        if (size != null) {
+            final int width = getWithinBounds(size.getWidth(), MIN_WIDTH, MAX_WIDTH);
+            final int height = getWithinBounds(size.getHeight(), MIN_HEIGHT, MAX_HEIGHT);
             return SIZE_KEY + EQUALS + width + COORDINATES_SEPARATOR + height;
         }
 
         return null;
+    }
+
+    /**
+     * Returns value withing bounds.
+     *
+     * @param value value to be processed
+     * @param lowBound low bound
+     * @param highBound high bound
+     * @return value withing bounds
+     */
+    private int getWithinBounds(final int value, final int lowBound, final int highBound) {
+        int valueInBounds = value;
+        if (value < lowBound) {
+            valueInBounds = lowBound;
+        }
+        if (value > highBound) {
+            valueInBounds = highBound;
+        }
+
+        return valueInBounds;
     }
 
 }

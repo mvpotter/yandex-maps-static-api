@@ -26,7 +26,6 @@ public class YandexMap {
     public static final String VIEWPORT_SIZE = "0.01";
     public static final Coordinate DEFAULT_VIEWPORT = new Coordinate(VIEWPORT_SIZE, VIEWPORT_SIZE);
     public static final int DEFAULT_SCALE = 10;
-    public static final int DEFAULT_SIZE = 450;
 
     /**
      * YandexMap type.<br />
@@ -52,7 +51,7 @@ public class YandexMap {
      * YandexMap size in pixels.<br />
      * <b>Description:</b> http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_size.xml
      */
-    private Size size = new Size(DEFAULT_SIZE, DEFAULT_SIZE);
+    private Size size;
     /**
      * Markers on map.<br />
      * <b>Description:</b> http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml

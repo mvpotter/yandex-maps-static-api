@@ -121,9 +121,6 @@ public class Marker {
      * @return maker type
      */
     public Type getType() {
-        if (style == Style.FLAG) {
-            return null;
-        }
         return type;
     }
 
@@ -142,14 +139,6 @@ public class Marker {
      * @return marker size
      */
     public Size getSize() {
-        final boolean isSquareLetter = (style == Style.SQUARE && type == Type.A)
-                                       || (style == Style.SQUARE && type == Type.B);
-        if (style == Style.FLAG || isSquareLetter) {
-            return null;
-        }
-        if (style == Style.PIN) {
-            return Size.MEDIUM;
-        }
         return size;
     }
 
@@ -168,13 +157,6 @@ public class Marker {
      * @return marker content
      */
     public Integer getContent() {
-        final boolean isLetter = type == Type.A || type == Type.B;
-        final boolean isEmpty = type == Type.EMPTY_BLUE || type == Type.EMPTY_PURPLE
-                                || type == Type.EMPTY_BLUE_WITH_YELLOW;
-        if (style == Style.FLAG || style == Style.PIN
-            || isLetter || isEmpty) {
-            return null;
-        }
         return content;
     }
 

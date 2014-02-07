@@ -18,7 +18,7 @@ public class MapTypeUrlArgumentBuilder extends AbstractUrlArgumentBuilder {
 
     @Override
     protected String buildUrlArgument(final YandexMap yandexMap) {
-        StringBuilder mapTypesBuilder = new StringBuilder(MAP_TYPE_KEY + EQUALS);
+        final StringBuilder mapTypesBuilder = new StringBuilder(MAP_TYPE_KEY + EQUALS);
         for (YandexMap.MapType mapType: yandexMap.getMapTypes()) {
             mapTypesBuilder.append(mapType.getCode()).append(MAP_TYPES_SEPARATOR);
         }
