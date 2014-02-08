@@ -13,6 +13,7 @@ import io.github.mvpotter.model.polyline.Polyline;
 import io.github.mvpotter.utils.ColorUtils;
 import io.github.mvpotter.utils.CoordinatesEncoder;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -33,18 +34,21 @@ public class PolylinesUrlArgumentBuilder extends AbstractUrlArgumentBuilder {
         if (!polylines.isEmpty()) {
             urlBuilder.append(POLYLINE_KEY).append(EQUALS);
             for (Polyline polyline : yandexMap.getPolylines()) {
-                final List<Coordinate> points = polyline.getPoints();
+                final List<Coordinate> points = new LinkedList<Coordinate>(polyline.getPoints());
                 if (!points.isEmpty()) {
                     urlBuilder.append(renderPolylineColor(ColorUtils.toHexColor(polyline.getColor())));
                     if (polyline instanceof Polygon) {
                         final Polygon polygon = (Polygon) polyline;
+                        if (!points.get(0).equals(points.get(points.size() - 1))) {
+                            points.add(points.get(0));
+                        }
                         urlBuilder.append(COORDINATES_SEPARATOR).
                                 append(renderPolygonFillingColor(ColorUtils.toHexColor(polygon.getFillingColor())));
                     }
                     urlBuilder.append(COORDINATES_SEPARATOR).
                             append(renderPolylineWidth(polyline.getWidth())).
                             append(COORDINATES_SEPARATOR).
-                            append(CoordinatesEncoder.encode(polyline.getPoints())).
+                            append(CoordinatesEncoder.encode(points)).
                             append(ENTITIES_SEPARATOR);
                 }
             }
