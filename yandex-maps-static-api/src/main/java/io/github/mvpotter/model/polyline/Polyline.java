@@ -6,12 +6,7 @@
  */
 package io.github.mvpotter.model.polyline;
 
-import io.github.mvpotter.model.Coordinate;
-
 import java.awt.*;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Polyline for representation on the map.<br />
@@ -24,7 +19,6 @@ public class Polyline {
 
     protected Color color = DEFAULT_COLOR;
     protected int width = DEFAULT_WIDTH;
-    protected List<Coordinate> points = new LinkedList<Coordinate>();
 
     /**
      * Sets polyline color.
@@ -52,15 +46,6 @@ public class Polyline {
     }
 
     /**
-     * Adds point to polyline.
-     *
-     * @param point point
-     */
-    public void addPoint(final Coordinate point) {
-        this.points.add(point);
-    }
-
-    /**
      * Returns polyline color.
      *
      * @return color
@@ -76,15 +61,6 @@ public class Polyline {
      */
     public int getWidth() {
         return width;
-    }
-
-    /**
-     * Returns polyline's points.
-     *
-     * @return list of points
-     */
-    public List<Coordinate> getPoints() {
-        return Collections.unmodifiableList(points);
     }
 
 }

@@ -48,9 +48,9 @@ public class YandexApiUrlBuilderTest {
                                                     + "CgAASQUAAA==";
     // Polygon
     private static final String API_URL_WITH_POLYGONS = "http://static-maps.yandex.ru/1.x/?l=map&lang=en-US&"
-                                                      + "pl=c:000000ff,f:00ff00a0,w:5,gZg-AqSKUgOu8___DwUAAA4oAACLBwAA"
-                                                      + "ROT__2bz__8=~c:ffffffff,f:00ff00a0,w:5,fqY-AkWTUgMJBgAASAcAAF"
-                                                      + "wEAAD39___m_X__8EAAAA=";
+                                                      + "pl=c:000000ff,f:00ff00a0,w:5,"
+                                                      + "AAAAAAAAAAAAAAAAAAk9AAAJPQAAAAAAAAAAAAD3wv8A98L_AAAAAA==;"
+                                                      + "QEIPAEBCDwAAAAAAgIQeAICEHgAAAAAAAAAAAIB74f-Ae-H_AAAAAA==";
     // Markers
     public static final String API_URL_WITH_MARKERS = "http://static-maps.yandex.ru/1.x/?l=map&lang=en-US&"
                                                     + "pt=37,37,pmwtm~37.1,37,flag~37.3,37.2,pmblm15~"
@@ -127,18 +127,21 @@ public class YandexApiUrlBuilderTest {
         YandexMap yandexMap = new YandexMap();
         Polygon polygon = new Polygon();
         polygon.setColor(Color.BLACK);
-        polygon.addPoint(new Coordinate("37.656705", "55.741092"));
-        polygon.addPoint(new Coordinate("37.653551", "55.742387"));
-        polygon.addPoint(new Coordinate("37.663805", "55.744318"));
-        polygon.addPoint(new Coordinate("37.656705", "55.741092"));
-        yandexMap.addPolyline(polygon);
 
-        polygon = new Polygon();
-        polygon.setColor(Color.WHITE);
-        polygon.addPoint(new Coordinate("37.660286", "55.743301"));
-        polygon.addPoint(new Coordinate("37.661831", "55.745165"));
-        polygon.addPoint(new Coordinate("37.662947", "55.743108"));
-        polygon.addPoint(new Coordinate("37.660286", "55.743301"));
+        Curve outerCurve = new Curve();
+        outerCurve.addPoint(new Coordinate("0", "0"));
+        outerCurve.addPoint(new Coordinate("0", "4"));
+        outerCurve.addPoint(new Coordinate("4", "4"));
+        outerCurve.addPoint(new Coordinate("4", "0"));
+        polygon.addCurve(outerCurve);
+
+        Curve innerCurve = new Curve();
+        innerCurve.addPoint(new Coordinate("1", "1"));
+        innerCurve.addPoint(new Coordinate("1", "3"));
+        innerCurve.addPoint(new Coordinate("3", "3"));
+        innerCurve.addPoint(new Coordinate("3", "1"));
+        polygon.addCurve(innerCurve);
+
         yandexMap.addPolyline(polygon);
 
         Assert.assertEquals(API_URL_WITH_POLYGONS, yandexApiUrlBuilder.build(yandexMap));

@@ -8,6 +8,7 @@ package io.github.mvpotter.urlbuilder;
 
 import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.YandexMap;
+import io.github.mvpotter.model.polyline.Curve;
 import io.github.mvpotter.model.polyline.Polygon;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,9 +30,13 @@ public class PolylinesUrlArgumentBuilderTest {
     @Test
     public void testBuildNotClosed() {
         Polygon polygon = new Polygon();
-        polygon.addPoint(new Coordinate("0", "0"));
-        polygon.addPoint(new Coordinate("10", "5"));
-        polygon.addPoint(new Coordinate("20", "20"));
+
+        Curve curve = new Curve();
+        curve.addPoint(new Coordinate("0", "0"));
+        curve.addPoint(new Coordinate("10", "5"));
+        curve.addPoint(new Coordinate("20", "20"));
+        polygon.addCurve(curve);
+
         yandexMap.addPolyline(polygon);
 
         Assert.assertEquals(API_URL_NOT_CLOSED, polylinesUrlArgumentBuilder.build(yandexMap));

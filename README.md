@@ -44,10 +44,23 @@ yandexMap.addPolyline(curve);
 // Add polygon (multiple if necessary)
 Polygon polygon = new Polygon();
 polygon.setColor(Color.WHITE);
-polygon.addPoint(new Coordinate("37.660286", "55.743301"));
-polygon.addPoint(new Coordinate("37.661831", "55.745165"));
-polygon.addPoint(new Coordinate("37.662947", "55.743108"));
-polygon.addPoint(new Coordinate("37.660286", "55.743301"));
+
+// Add outer line (the enclosed area will be filled with color)
+Curve outerCurve = new Curve();
+outerCurve.addPoint(new Coordinate("0", "0"));
+outerCurve.addPoint(new Coordinate("0", "4"));
+outerCurve.addPoint(new Coordinate("4", "4"));
+outerCurve.addPoint(new Coordinate("4", "0"));
+polygon.addCurve(outerCurve);
+
+// Add inner line (the enclosed area will not be filled)
+Curve innerCurve = new Curve();
+innerCurve.addPoint(new Coordinate("1", "1"));
+innerCurve.addPoint(new Coordinate("1", "3"));
+innerCurve.addPoint(new Coordinate("3", "3"));
+innerCurve.addPoint(new Coordinate("3", "1"));
+polygon.addCurve(innerCurve);
+
 yandexMap.addPolyline(polygon);
 
 // Add markers
