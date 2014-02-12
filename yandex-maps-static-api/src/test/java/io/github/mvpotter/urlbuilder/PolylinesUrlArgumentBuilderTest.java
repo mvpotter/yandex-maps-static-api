@@ -7,25 +7,17 @@
 package io.github.mvpotter.urlbuilder;
 
 import io.github.mvpotter.model.Coordinate;
-import io.github.mvpotter.model.YandexMap;
 import io.github.mvpotter.model.polyline.Curve;
 import io.github.mvpotter.model.polyline.Polygon;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-public class PolylinesUrlArgumentBuilderTest {
+public class PolylinesUrlArgumentBuilderTest extends AbstaratUrlBuilderTest {
 
     private static final String API_URL_NOT_CLOSED = "pl=c:8822ddc0,f:00ff00a0,w:5,"
                                                    + "AAAAAAAAAACAlpgAQEtMAICWmADA4eQAANPO_gDTzv4=";
 
-    private YandexMap yandexMap;
     private static final PolylinesUrlArgumentBuilder polylinesUrlArgumentBuilder = new PolylinesUrlArgumentBuilder();
-
-    @Before
-    public void before() {
-        yandexMap = new YandexMap();
-    }
 
     @Test
     public void testBuildNotClosed() {

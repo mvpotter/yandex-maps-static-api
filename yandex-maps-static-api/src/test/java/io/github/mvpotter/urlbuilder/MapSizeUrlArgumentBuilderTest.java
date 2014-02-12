@@ -7,12 +7,10 @@
 package io.github.mvpotter.urlbuilder;
 
 import io.github.mvpotter.model.Size;
-import io.github.mvpotter.model.YandexMap;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-public class MapSizeUrlArgumentBuilderTest {
+public class MapSizeUrlArgumentBuilderTest extends AbstaratUrlBuilderTest {
 
     private static final String MAP_SIZE_PREFIX = "size=";
 
@@ -25,13 +23,7 @@ public class MapSizeUrlArgumentBuilderTest {
                                                                      MapSizeUrlArgumentBuilder.COORDINATES_SEPARATOR +
                                                                      MapSizeUrlArgumentBuilder.MAX_HEIGHT;
 
-    private YandexMap yandexMap;
     private static final MapSizeUrlArgumentBuilder mapSizeUrlArgumentBuilder = new MapSizeUrlArgumentBuilder();
-
-    @Before
-    public void before() {
-        yandexMap = new YandexMap();
-    }
 
     @Test
     public void testBuildWithLowBounds() {

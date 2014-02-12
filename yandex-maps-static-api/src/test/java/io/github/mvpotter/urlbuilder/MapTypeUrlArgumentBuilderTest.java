@@ -8,10 +8,9 @@ package io.github.mvpotter.urlbuilder;
 
 import io.github.mvpotter.model.YandexMap;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-public class MapTypeUrlArgumentBuilderTest {
+public class MapTypeUrlArgumentBuilderTest extends AbstaratUrlBuilderTest {
 
     private static final String MAP_TYPE_PREFIX = "l=";
 
@@ -24,13 +23,7 @@ public class MapTypeUrlArgumentBuilderTest {
     private static final String HYBRID_MAP_TYPE_ARGUMENT = MAP_TYPE_PREFIX + "sat,skl";
     private static final String COMPLEX_MAP_TYPE_ARGUMENT = MAP_TYPE_PREFIX + "sat,skl,trf";
 
-    private YandexMap yandexMap;
     private static final MapTypeUrlArgumentBuilder mapTypeUrlArgumentBuilder = new MapTypeUrlArgumentBuilder();
-
-    @Before
-    public void before() {
-        yandexMap = new YandexMap();
-    }
 
     @Test
     public void testBuildDefault() {

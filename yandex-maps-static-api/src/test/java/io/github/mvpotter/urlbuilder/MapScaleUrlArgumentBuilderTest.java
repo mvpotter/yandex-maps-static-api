@@ -6,12 +6,10 @@
  */
 package io.github.mvpotter.urlbuilder;
 
-import io.github.mvpotter.model.YandexMap;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-public class MapScaleUrlArgumentBuilderTest {
+public class MapScaleUrlArgumentBuilderTest extends AbstaratUrlBuilderTest {
 
     private static final String MAP_SCALE_PREFIX = "z=";
 
@@ -21,13 +19,7 @@ public class MapScaleUrlArgumentBuilderTest {
     private static final String HIGHER_THAN_MAN_BOUND_SCALE_ARGUMENT =
             MAP_SCALE_PREFIX + MapScaleUrlArgumentBuilder.MAX_SCALE;
 
-    private YandexMap yandexMap;
     private static final MapScaleUrlArgumentBuilder mapScaleUrlArgumentBuilder = new MapScaleUrlArgumentBuilder();
-
-    @Before
-    public void before() {
-        yandexMap = new YandexMap();
-    }
 
     @Test
     public void testBuildDefault() {

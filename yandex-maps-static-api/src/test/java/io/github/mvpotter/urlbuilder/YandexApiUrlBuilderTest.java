@@ -8,7 +8,6 @@ package io.github.mvpotter.urlbuilder;
 
 import io.github.mvpotter.model.Coordinate;
 import io.github.mvpotter.model.Size;
-import io.github.mvpotter.model.YandexMap;
 import io.github.mvpotter.model.marker.Marker;
 import io.github.mvpotter.model.marker.Style;
 import io.github.mvpotter.model.marker.Type;
@@ -21,7 +20,7 @@ import org.junit.Test;
 import java.awt.*;
 import java.math.BigDecimal;
 
-public class YandexApiUrlBuilderTest {
+public class YandexApiUrlBuilderTest extends AbstaratUrlBuilderTest {
 
     // Basic URL
     private static final String DEFAULT_API_URL = "http://static-maps.yandex.ru/1.x/?"
@@ -62,46 +61,41 @@ public class YandexApiUrlBuilderTest {
 
     @Before
     public void before() {
+        super.before();
         yandexApiUrlBuilder = new YandexApiUrlBuilder();
     }
 
     @Test
     public void basicTestBuild() {
-        YandexMap yandexMap = new YandexMap();
         Assert.assertEquals(DEFAULT_API_URL, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
     public void testBuildWithApiKey() {
-        YandexMap yandexMap = new YandexMap();
         yandexMap.setApiKey(API_KEY);
         Assert.assertEquals(API_URL_WITH_API_KEY, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
     public void testBuildWithViewport() {
-        YandexMap yandexMap = new YandexMap();
         yandexMap.setViewport(new Coordinate(VIEWPORT_LONGITUDE, VIEWPORT_LATITUDE));
         Assert.assertEquals(API_URL_WITH_VIEWPORT, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
     public void testBuildWithScale() {
-        YandexMap yandexMap = new YandexMap();
         yandexMap.setScale(SCALE);
         Assert.assertEquals(API_URL_WITH_SCALE, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
     public void testBuildWithSize() {
-        YandexMap yandexMap = new YandexMap();
         yandexMap.setSize(new Size(WIDTH, HEIGHT));
         Assert.assertEquals(API_URL_WITH_SIZE, yandexApiUrlBuilder.build(yandexMap));
     }
 
     @Test
     public void testBuildWithCurves() {
-        YandexMap yandexMap = new YandexMap();
         Curve curve = new Curve();
         curve.setColor(Color.BLACK);
         curve.addPoint(new Coordinate("37.656577", "55.741176"));
@@ -124,7 +118,6 @@ public class YandexApiUrlBuilderTest {
 
     @Test
     public void testBuildWithPolygons() {
-        YandexMap yandexMap = new YandexMap();
         Polygon polygon = new Polygon();
         polygon.setColor(Color.BLACK);
 
@@ -149,7 +142,6 @@ public class YandexApiUrlBuilderTest {
 
     @Test
     public void testMarkers() {
-        YandexMap yandexMap = new YandexMap();
         yandexMap.addMarker(new Marker(new Coordinate("37", "37")));
         yandexMap.addMarker(new Marker(new Coordinate("37.1", "37"), Style.FLAG));
         yandexMap.addMarker(new Marker(new Coordinate("37.2", "37"), Style.PIN, Type.BLACK));
