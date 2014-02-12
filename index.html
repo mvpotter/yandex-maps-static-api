@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="stylesheets/ie.css">
     <![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
   <body>
       <div id="header">
@@ -37,7 +38,10 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-        <p><em>Current release is <a href="https://github.com/mvpotter/yandex-maps-static-api/releases/tag/v0.3">v0.3</a></em></p>
+        <h1>
+<a name="yandex-maps-static-api" class="anchor" href="#yandex-maps-static-api"><span class="octicon octicon-link"></span></a>yandex-maps-static-api</h1>
+
+<p>Library for working with <a href="http://api.yandex.ru/maps/doc/staticapi/">Yandex Maps Static API 1.x</a></p>
 
 <h2>
 <a name="done" class="anchor" href="#done"><span class="octicon octicon-link"></span></a>Done</h2>
@@ -62,6 +66,8 @@
 <li>Coordinates encoding</li>
 </ul>
 </li>
+<li>Support for <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml">Markers</a>
+</li>
 </ul><h2>
 <a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
 
@@ -85,27 +91,41 @@
 <span class="n">curve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.658257"</span><span class="o">,</span> <span class="s">"55.742524"</span><span class="o">));</span>
 <span class="n">yandexMap</span><span class="o">.</span><span class="na">addPolyline</span><span class="o">(</span><span class="n">curve</span><span class="o">);</span>
 
+<span class="c1">// Add polygon (multiple if necessary)</span>
 <span class="n">Polygon</span> <span class="n">polygon</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Polygon</span><span class="o">();</span>
 <span class="n">polygon</span><span class="o">.</span><span class="na">setColor</span><span class="o">(</span><span class="n">Color</span><span class="o">.</span><span class="na">WHITE</span><span class="o">);</span>
-<span class="n">polygon</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.660286"</span><span class="o">,</span> <span class="s">"55.743301"</span><span class="o">));</span>
-<span class="n">polygon</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.661831"</span><span class="o">,</span> <span class="s">"55.745165"</span><span class="o">));</span>
-<span class="n">polygon</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.662947"</span><span class="o">,</span> <span class="s">"55.743108"</span><span class="o">));</span>
-<span class="n">polygon</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.660286"</span><span class="o">,</span> <span class="s">"55.743301"</span><span class="o">));</span>
+
+<span class="c1">// Add outer line (the enclosed area will be filled with color)</span>
+<span class="n">Curve</span> <span class="n">outerCurve</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Curve</span><span class="o">();</span>
+<span class="n">outerCurve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"0"</span><span class="o">,</span> <span class="s">"0"</span><span class="o">));</span>
+<span class="n">outerCurve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"0"</span><span class="o">,</span> <span class="s">"4"</span><span class="o">));</span>
+<span class="n">outerCurve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"4"</span><span class="o">,</span> <span class="s">"4"</span><span class="o">));</span>
+<span class="n">outerCurve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"4"</span><span class="o">,</span> <span class="s">"0"</span><span class="o">));</span>
+<span class="n">polygon</span><span class="o">.</span><span class="na">addCurve</span><span class="o">(</span><span class="n">outerCurve</span><span class="o">);</span>
+
+<span class="c1">// Add inner line (the enclosed area will not be filled)</span>
+<span class="n">Curve</span> <span class="n">innerCurve</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Curve</span><span class="o">();</span>
+<span class="n">innerCurve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">));</span>
+<span class="n">innerCurve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"1"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">));</span>
+<span class="n">innerCurve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"3"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">));</span>
+<span class="n">innerCurve</span><span class="o">.</span><span class="na">addPoint</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"3"</span><span class="o">,</span> <span class="s">"1"</span><span class="o">));</span>
+<span class="n">polygon</span><span class="o">.</span><span class="na">addCurve</span><span class="o">(</span><span class="n">innerCurve</span><span class="o">);</span>
+
 <span class="n">yandexMap</span><span class="o">.</span><span class="na">addPolyline</span><span class="o">(</span><span class="n">polygon</span><span class="o">);</span>
 
+<span class="c1">// Add markers</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="k">new</span> <span class="n">Marker</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.656577"</span><span class="o">,</span> <span class="s">"55.741176"</span><span class="o">)));</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="k">new</span> <span class="n">Marker</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.656748"</span><span class="o">,</span> <span class="s">"55.741419"</span><span class="o">),</span> <span class="n">Style</span><span class="o">.</span><span class="na">FLAG</span><span class="o">));</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="k">new</span> <span class="n">Marker</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.655131"</span><span class="o">,</span> <span class="s">"55.741814"</span><span class="o">),</span> <span class="n">Style</span><span class="o">.</span><span class="na">PIN</span><span class="o">,</span> <span class="n">Type</span><span class="o">.</span><span class="na">BLACK</span><span class="o">));</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="k">new</span> <span class="n">Marker</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.658257"</span><span class="o">,</span> <span class="s">"55.742524"</span><span class="o">),</span> <span class="n">Style</span><span class="o">.</span><span class="na">PIN</span><span class="o">,</span> <span class="n">Type</span><span class="o">.</span><span class="na">GRAY</span><span class="o">));</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="k">new</span> <span class="n">Marker</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.660286"</span><span class="o">,</span> <span class="s">"55.743301"</span><span class="o">),</span> <span class="n">Style</span><span class="o">.</span><span class="na">SQUARE</span><span class="o">,</span> <span class="n">Type</span><span class="o">.</span><span class="na">A</span><span class="o">));</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="k">new</span> <span class="n">Marker</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.661831"</span><span class="o">,</span> <span class="s">"55.745165"</span><span class="o">),</span> <span class="n">Style</span><span class="o">.</span><span class="na">SQUARE</span><span class="o">,</span> <span class="n">Type</span><span class="o">.</span><span class="na">B</span><span class="o">));</span>
+<span class="n">yandexMap</span><span class="o">.</span><span class="na">addMarker</span><span class="o">(</span><span class="k">new</span> <span class="n">Marker</span><span class="o">(</span><span class="k">new</span> <span class="n">Coordinate</span><span class="o">(</span><span class="s">"37.662947"</span><span class="o">,</span> <span class="s">"55.743108"</span><span class="o">),</span> <span class="n">Style</span><span class="o">.</span><span class="na">ROUND</span><span class="o">,</span> <span class="n">Type</span><span class="o">.</span><span class="na">B</span><span class="o">));</span>
+
 <span class="c1">// Use YandexApiUrlBuilder to generate appropriate URL for using in a browser or web component</span>
-<span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="n">YandexApiUrlBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">yandexMap</span><span class="o">);</span>
+<span class="n">YandexApiUrlBuilder</span> <span class="n">yandexApiUrlBuilder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">YandexApiUrlBuilder</span><span class="o">();</span>
+<span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="n">yandexApiUrlBuilder</span><span class="o">.</span><span class="na">build</span><span class="o">(</span><span class="n">yandexMap</span><span class="o">);</span>
 </pre></div>
-
-<h2>
-<a name="further-plans" class="anchor" href="#further-plans"><span class="octicon octicon-link"></span></a>Further plans</h2>
-
-<ul>
-<li>Support for <a href="http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml">Markers</a>
-</li>
-<li>Support for <a href="http://api.yandex.ru/maps/doc/geocoder/desc/concepts/About.xml">Geocoding</a>
-</li>
-</ul>
       </section>
 
     </div>
