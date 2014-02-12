@@ -76,6 +76,4 @@ yandexMap.addMarker(new Marker(new Coordinate("37.662947", "55.743108"), Style.R
 YandexApiUrlBuilder yandexApiUrlBuilder = new YandexApiUrlBuilder();
 String url = yandexApiUrlBuilder.build(yandexMap);
 ```
-Further plans
------
-- Refactoring and bugfixing
+
