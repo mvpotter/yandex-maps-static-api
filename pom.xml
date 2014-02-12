@@ -19,6 +19,7 @@
 
         <maven-release-plugin.version>2.1</maven-release-plugin.version>
         <maven-pmd-plugin.version>2.7.1</maven-pmd-plugin.version>
+        <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
         <maven-checkstyle-plugin.version>2.9.1</maven-checkstyle-plugin.version>
         <maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
 
@@ -144,6 +145,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>sign-artifacts</id>
