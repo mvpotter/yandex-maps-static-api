@@ -3,20 +3,20 @@ yandex-maps-static-api
 
 Library for working with [Yandex Maps Static API 1.x](http://api.yandex.ru/maps/doc/staticapi/)
 
-Done
-----
-- Support for map properties
+Supports
+--------
+- Map properties
   - [map types](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_type.xml)
   - [map center](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_center.xml)
   - [viewport](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_viewport.xml)
   - [scale](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/map_scale.xml)
   - [API key](http://api.yandex.ru/maps/form.xml)
   - [localization](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/localization.xml)
-- Support for [Polylines](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml)
+- [Polylines](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/polylines.xml)
   - Curves
   - Polygons
   - Coordinates encoding
-- Support for [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
+- [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
 
 Maven Coordinates
 -----------------
