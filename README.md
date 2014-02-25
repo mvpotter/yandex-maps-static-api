@@ -18,6 +18,16 @@ Done
   - Coordinates encoding
 - Support for [Markers](http://api.yandex.ru/maps/doc/staticapi/1.x/dg/concepts/markers.xml)
 
+Maven Coordinates
+-----------------
+```xml
+<dependency>
+    <groupId>io.github.mvpotter</groupId>
+    <artifactId>yandex-maps-static-api</artifactId>
+    <version>1.0</version>
+</dependency>
+```
+
 Usage
 -----
 ```Java
