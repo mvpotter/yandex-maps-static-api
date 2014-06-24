@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mvpotter/yandex-maps-static-api.svg?branch=master)](https://travis-ci.org/mvpotter/yandex-maps-static-api)
+
 yandex-maps-static-api
 ======================
 
